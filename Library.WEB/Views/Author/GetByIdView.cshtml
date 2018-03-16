@@ -1,0 +1,47 @@
+﻿@model Library.DataAccessLayer.Models.Author
+
+<div>
+    <h4>Author</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Birthday)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Birthday)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Deathday)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Deathday)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Books)
+        </dt>
+
+        <dd>
+            @foreach (var book in Model.Books)
+            {
+                <p>@Html.Label(book.Name)</p>
+            }
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Update", "UpdateView", new { id = Model.AuthorId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,39 @@
+﻿@model Library.ViewModelLayer.ViewModels.BookViewModel
+
+<div>
+    <h4>Book</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.YearOfPublishing)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YearOfPublishing)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Authors)
+        </dt>
+
+        <dd>
+            @foreach (var author in Model.Authors)
+            {
+                <p>@Html.Label(author.Name)</p>
+            }
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Update", "UpdateView", new { id = Model.BookId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

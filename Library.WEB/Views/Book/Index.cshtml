@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Library.ViewModelLayer.ViewModels.BookViewModel>
+
+<p>
+    @Html.ActionLink("Create New", "CreateView")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.YearOfPublishing)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var book in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => book.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => book.YearOfPublishing)
+            </td>
+            <td>
+                @Html.ActionLink("Read", "GetByIdView", new { id = book.BookId }) |
+                @Html.ActionLink("Update", "UpdateView", new { id = book.BookId }) |
+                @Html.ActionLink("Delete", "DeleteView", new { id = book.BookId })
+            </td>
+        </tr>
+    }
+
+</table>

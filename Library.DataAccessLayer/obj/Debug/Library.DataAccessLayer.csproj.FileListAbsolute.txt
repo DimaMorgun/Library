@@ -1,0 +1,15 @@
+C:\Users\Anuitex-52\source\repos\Library\Library.DataAccessLayer\bin\Debug\Library.DataAccessLayer.dll.config
+C:\Users\Anuitex-52\source\repos\Library\Library.DataAccessLayer\bin\Debug\Library.DataAccessLayer.dll
+C:\Users\Anuitex-52\source\repos\Library\Library.DataAccessLayer\bin\Debug\Library.DataAccessLayer.pdb
+C:\Users\Anuitex-52\source\repos\Library\Library.DataAccessLayer\bin\Debug\EntityFramework.dll
+C:\Users\Anuitex-52\source\repos\Library\Library.DataAccessLayer\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Anuitex-52\source\repos\Library\Library.DataAccessLayer\bin\Debug\EntityFramework.xml
+C:\Users\Anuitex-52\source\repos\Library\Library.DataAccessLayer\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Anuitex-52\source\repos\Library\Library.DataAccessLayer\obj\Debug\Library.DataAccessLayer.csproj.CoreCompileInputs.cache
+C:\Users\Anuitex-52\source\repos\Library\Library.DataAccessLayer\obj\Debug\Library.DataAccessLayer.dll
+C:\Users\Anuitex-52\source\repos\Library\Library.DataAccessLayer\obj\Debug\Library.DataAccessLayer.pdb
+C:\Users\Anuitex-52\source\repos\Library\Library.DataAccessLayer\obj\Debug\Library.DataAccessLayer.Migrations.InitializeDB.resources
+C:\Users\Anuitex-52\source\repos\Library\Library.DataAccessLayer\obj\Debug\Library.DataAccessLayer.csproj.GenerateResource.Cache
+C:\Users\Anuitex-52\source\repos\LIbrary\Library.DataAccessLayer\obj\Debug\Library.DataAccessLayer.csprojResolveAssemblyReference.cache
+C:\Users\Anuitex-52\source\repos\LIbrary\Library.DataAccessLayer\bin\Debug\Library.EntityLayer.dll
+C:\Users\Anuitex-52\source\repos\LIbrary\Library.DataAccessLayer\bin\Debug\Library.EntityLayer.pdb
