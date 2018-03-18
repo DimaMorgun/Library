@@ -1,0 +1,21 @@
+{
+    "Authors": [
+        {
+            "Books": [],
+            "AuthorId": 4,
+            "Name": "Bill Jobs",
+            "Birthday": null,
+            "Deathday": 2011
+        },
+        {
+            "Books": [],
+            "AuthorId": 5,
+            "Name": "Steve Gates",
+            "Birthday": 1955,
+            "Deathday": null
+        }
+    ],
+    "BookId": 1,
+    "Name": "Micropple",
+    "YearOfPublishing": 2019
+}

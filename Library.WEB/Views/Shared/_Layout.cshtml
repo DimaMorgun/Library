@@ -22,16 +22,16 @@
                             <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Projects</a>
+                            @Html.ActionLink("All Publications", "AllPublications", "Home", null, new { @class = "nav-link", data_icon = "gear" })
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Services</a>
+                            @Html.ActionLink("Go to Books", "Index", "Book", null, new { @class = "nav-link", data_icon = "gear" })
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Downloads</a>
+                            @Html.ActionLink("Go to Authors", "Index", "Author", null, new { @class = "nav-link", data_icon = "gear" })
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
+                            @Html.ActionLink("Go to Magazines", "Index", "Magazine", null, new { @class = "nav-link", data_icon = "gear" })
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>

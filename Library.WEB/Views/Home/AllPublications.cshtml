@@ -1,0 +1,43 @@
+﻿@model Library.ViewModelLayer.ViewModels.AllPublicationsViewModel
+
+<div>
+    <h4>All Publications</h4>
+    <hr />
+    <dl class="dl-horizontal">
+    </dl>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Type
+        </th>
+    </tr>
+
+    @foreach (var book in Model.Books)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => book.Name)
+            </td>
+            <td>
+                @Html.DisplayNameFor(modelItem => book)
+            </td>
+        </tr>
+    }
+    @foreach (var magazine in Model.Magazines)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => magazine.Name)
+            </td>
+            <td>
+                @Html.DisplayNameFor(modelItem => magazine)
+            </td>
+        </tr>
+    }
+
+</table>

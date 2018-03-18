@@ -1,7 +1,7 @@
-﻿
-using Library.BusinessLogicLayer.Services;
+﻿using Library.BusinessLogicLayer.Services;
 using Library.ViewModelLayer.ViewModels;
 
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace Library.WEB.Controllers
@@ -18,19 +18,23 @@ namespace Library.WEB.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View(_bookService.GetList());
+            List<BookViewModel> allBooks = _bookService.GetList();
+
+            return View(allBooks);
         }
 
         [HttpGet]
         public ActionResult CreateView()
         {
-            return View(_bookService.GetBookAuthors());
+            BookAuthorsViewModel bookAuthors = _bookService.GetBookAuthors();
+
+            return View(bookAuthors);
         }
 
         [HttpPost]
-        public ActionResult Create(BookViewModel book, int[] selectediItems)
+        public ActionResult Create(BookViewModel book, int[] selectedItems)
         {
-            _bookService.Create(book, selectediItems);
+            _bookService.Create(book, selectedItems);
 
             return RedirectToAction("Index");
         }
@@ -38,19 +42,23 @@ namespace Library.WEB.Controllers
         [HttpGet]
         public ActionResult GetByIdView(int id)
         {
-            return View(_bookService.GetByid(id));
+            BookViewModel book = _bookService.GetByid(id);
+
+            return View(book);
         }
 
         [HttpGet]
         public ActionResult UpdateView(int id)
         {
-            return View(_bookService.GetBookAuthors(id));
+            BookAuthorsViewModel bookAuthors = _bookService.GetBookAuthors(id);
+
+            return View(bookAuthors);
         }
 
         [HttpPost]
-        public ActionResult Update(BookViewModel book, int[] selectediItems)
+        public ActionResult Update(BookViewModel book, int[] selectedItems)
         {
-            _bookService.Update(book, selectediItems);
+            _bookService.Update(book, selectedItems);
 
             return RedirectToAction("Index");
         }
@@ -58,13 +66,23 @@ namespace Library.WEB.Controllers
         [HttpGet]
         public ActionResult DeleteView(int id)
         {
-            return View(_bookService.GetByid(id));
+            BookViewModel book = _bookService.GetByid(id);
+
+            return View(book);
         }
 
         [HttpPost]
         public ActionResult Delete(int id)
         {
             _bookService.Delete(id);
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult SaveToJSON(int id)
+        {
+            _bookService.SaveToJSON(id);
 
             return RedirectToAction("Index");
         }

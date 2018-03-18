@@ -1,0 +1,37 @@
+﻿@model Library.ViewModelLayer.ViewModels.MagazineViewModel
+
+<div>
+    <h4>Magazine</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.YearOfPublishing)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YearOfPublishing)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Update", "UpdateView", new { id = Model.MagazineId }) |
+    @Html.ActionLink("Save To Json", "SaveToJSON", new { id = Model.MagazineId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

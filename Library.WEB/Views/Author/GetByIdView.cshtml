@@ -1,4 +1,4 @@
-﻿@model Library.DataAccessLayer.Models.Author
+﻿@model Library.ViewModelLayer.ViewModels.AuthorViewModel
 
 <div>
     <h4>Author</h4>
@@ -43,5 +43,6 @@
 </div>
 <p>
     @Html.ActionLink("Update", "UpdateView", new { id = Model.AuthorId }) |
+    @Html.ActionLink("Save To Json", "SaveToJSON", new { id = Model.AuthorId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

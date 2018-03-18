@@ -32,7 +32,7 @@
                 @foreach (var author in Model.Authors)
                 {
                     <div class="form-check">
-                        <input type="checkbox" class="form-check-input" name="selectediItems" value="@author.AuthorId" id="@author.AuthorId"
+                        <input type="checkbox" class="form-check-input" name="selectedItems" value="@author.AuthorId" id="@author.AuthorId"
                                @(Model.Book.Authors.FirstOrDefault(x => x.AuthorId == author.AuthorId) != null ? "checked=\"checked\"" : "") />
                         <label class="form-check-label" for="@author.AuthorId">@author.Name</label>
                     </div>

@@ -1,108 +1,90 @@
-﻿//using Library.DataAccessLayer.Models;
-//using Library.DataAccessLayer.UnitOfWork;
-//using Library.WEB.Models;
+﻿using Library.BusinessLogicLayer.Services;
+using Library.ViewModelLayer.ViewModels;
 
-//using System.Linq;
-//using System.Web.Mvc;
+using System.Collections.Generic;
+using System.Web.Mvc;
 
-//namespace Library.WEB.Controllers
-//{
-//    public class AuthorController : Controller
-//    {
-//        private UnitOfWork _unitOfWork;
+namespace Library.WEB.Controllers
+{
+    public class AuthorController : Controller
+    {
+        private AuthorService _authorService;
 
-//        public AuthorController()
-//        {
-//            _unitOfWork = new UnitOfWork();
-//        }
+        public AuthorController()
+        {
+            _authorService = new AuthorService();
+        }
 
-//        [HttpGet]
-//        public ActionResult Index()
-//        {
-//            return View(_unitOfWork.Authors.GetList());
-//        }
+        [HttpGet]
+        public ActionResult Index()
+        {
+            List<AuthorViewModel> allAuthors = _authorService.GetList();
 
-//        [HttpGet]
-//        public ActionResult CreateView()
-//        {
-//            var authorBooksViewModel = new AuthorBooksViewModel
-//            {
-//                Books = _unitOfWork.Books.GetList()
-//            };
-//            _unitOfWork.Save();
+            return View(allAuthors);
+        }
 
-//            return View(authorBooksViewModel);
-//        }
+        [HttpGet]
+        public ActionResult CreateView()
+        {
+            AuthorBooksViewModel authorBooks = _authorService.GetAuthorBooks();
 
-//        [HttpPost]
-//        public ActionResult Create(Author author, int[] selectedBooks)
-//        {
-//            if (selectedBooks != null)
-//            {
-//                foreach (var book in _unitOfWork.Books.GetList().Where(x => selectedBooks.Contains(x.BookId)))
-//                {
-//                    author.Books.Add(book);
-//                }
-//            }
-//            _unitOfWork.Authors.Create(author);
-//            _unitOfWork.Save();
+            return View(authorBooks);
+        }
 
-//            return RedirectToAction("Index");
-//        }
+        [HttpPost]
+        public ActionResult Create(AuthorViewModel author, int[] selectedItems)
+        {
+            _authorService.Create(author, selectedItems);
 
-//        [HttpGet]
-//        public ActionResult GetByIdView(int id)
-//        {
-//            return View(_unitOfWork.Authors.GetByid(id));
-//        }
+            return RedirectToAction("Index");
+        }
 
-//        [HttpGet]
-//        public ActionResult UpdateView(int id)
-//        {
-//            var authorBooksViewModel = new AuthorBooksViewModel
-//            {
-//                Author = _unitOfWork.Authors.GetByid(id),
-//                Books = _unitOfWork.Books.GetList()
-//            };
+        [HttpGet]
+        public ActionResult GetByIdView(int id)
+        {
+            AuthorViewModel author = _authorService.GetByid(id);
 
-//            return View(authorBooksViewModel);
-//        }
+            return View(author);
+        }
 
-//        [HttpPost]
-//        public ActionResult Update(Author author, int[] selectedBooks)
-//        {
-//            Author newAuthor = _unitOfWork.Authors.GetByid(author.AuthorId);
-//            newAuthor.Name = author.Name;
-//            newAuthor.Birthday = author.Birthday;
-//            newAuthor.Deathday = author.Deathday;
+        [HttpGet]
+        public ActionResult UpdateView(int id)
+        {
+            AuthorBooksViewModel authorBooks = _authorService.GetAuthorBooks(id);
 
-//            newAuthor.Books.Clear();
-//            if (selectedBooks != null)
-//            {
-//                foreach (var book in _unitOfWork.Books.GetList().Where(x => selectedBooks.Contains(x.BookId)))
-//                {
-//                    newAuthor.Books.Add(book);
-//                }
-//            }
-//            _unitOfWork.Authors.Update(newAuthor);
-//            _unitOfWork.Save();
+            return View(authorBooks);
+        }
 
-//            return RedirectToAction("Index");
-//        }
+        [HttpPost]
+        public ActionResult Update(AuthorViewModel author, int[] selectedItems)
+        {
+            _authorService.Update(author, selectedItems);
 
-//        [HttpGet]
-//        public ActionResult DeleteView(int id)
-//        {
-//            return View(_unitOfWork.Authors.GetByid(id));
-//        }
+            return RedirectToAction("Index");
+        }
 
-//        [HttpPost]
-//        public ActionResult Delete(int id)
-//        {
-//            _unitOfWork.Authors.Delete(id);
-//            _unitOfWork.Save();
+        [HttpGet]
+        public ActionResult DeleteView(int id)
+        {
+            AuthorViewModel author = _authorService.GetByid(id);
 
-//            return RedirectToAction("Index");
-//        }
-//    }
-//}
+            return View(author);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            _authorService.Delete(id);
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult SaveToJSON(int id)
+        {
+            _authorService.SaveToJSON(id);
+
+            return RedirectToAction("Index");
+        }
+    }
+}

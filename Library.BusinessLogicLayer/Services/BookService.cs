@@ -1,17 +1,17 @@
-﻿using Library.BusinessLogicLayer.Interfaces;
-using Library.DataAccessLayer.UnitOfWork;
+﻿using Library.DataAccessLayer.UnitOfWork;
 using Library.EntityLayer.Models;
 using Library.ViewModelLayer.ViewModels;
 
 using AutoMapper;
+using Newtonsoft.Json;
 
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Web;
 
 namespace Library.BusinessLogicLayer.Services
 {
-    public class BookService : IService<BookViewModel>
+    public class BookService
     {
         private UnitOfWork _unitOfWork;
 
@@ -53,11 +53,11 @@ namespace Library.BusinessLogicLayer.Services
 
         public List<BookViewModel> GetList()
         {
-            List<Book> allBooks = _unitOfWork.Books.GetList();
+            List<Book> allBooksModel = _unitOfWork.Books.GetList();
 
-            List<BookViewModel> allBooksView = Mapper.Map<List<Book>, List<BookViewModel>>(allBooks);
+            List<BookViewModel> allBooksViewModel = Mapper.Map<List<Book>, List<BookViewModel>>(allBooksModel);
 
-            return allBooksView;
+            return allBooksViewModel;
         }
 
         public BookAuthorsViewModel GetBookAuthors()
@@ -78,7 +78,7 @@ namespace Library.BusinessLogicLayer.Services
         {
             Book bookModel = _unitOfWork.Books.GetByid(id);
             List<Author> allAuthors = _unitOfWork.Authors.GetList();
-            
+
             List<AuthorViewModel> authorViewModel = Mapper.Map<List<Author>, List<AuthorViewModel>>(allAuthors);
             BookViewModel bookViewModel = Mapper.Map<Book, BookViewModel>(bookModel);
 
@@ -107,6 +107,23 @@ namespace Library.BusinessLogicLayer.Services
             }
             _unitOfWork.Books.Update(bookModel);
             _unitOfWork.Save();
+        }
+
+        public void SaveToJSON(int id)
+        {
+            Book bookModel = _unitOfWork.Books.GetByid(id);
+
+            string json = JsonConvert.SerializeObject(
+                bookModel,
+                Formatting.None,
+                new JsonSerializerSettings()
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+
+            var path = HttpContext.Current.Server.MapPath("~/App_Data/Book.json");
+
+            System.IO.File.WriteAllText(path, json);
         }
     }
 }
