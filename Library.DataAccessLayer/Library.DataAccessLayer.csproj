@@ -38,6 +38,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -49,12 +50,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connection\CurrentConnection.cs" />
     <Compile Include="Context\LibraryDataAccessContext.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Migrations\201803151352488_InitializeDB.cs" />
     <Compile Include="Migrations\201803151352488_InitializeDB.Designer.cs">
       <DependentUpon>201803151352488_InitializeDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803191409541_Added Brochure model..cs" />
+    <Compile Include="Migrations\201803191409541_Added Brochure model..Designer.cs">
+      <DependentUpon>201803191409541_Added Brochure model..cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -73,6 +79,9 @@
     <EmbeddedResource Include="Migrations\201803151352488_InitializeDB.resx">
       <DependentUpon>201803151352488_InitializeDB.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803191409541_Added Brochure model..resx">
+      <DependentUpon>201803191409541_Added Brochure model..cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Library.EntityLayer\Library.EntityLayer.csproj">
@@ -80,5 +89,6 @@
       <Name>Library.EntityLayer</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

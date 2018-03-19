@@ -55,7 +55,7 @@ namespace Library.WEB.Controllers
         [HttpPost]
         public ActionResult Update(MagazineViewModel magazine)
         {
-            _magazineService.Create(magazine);
+            _magazineService.Update(magazine);
 
             return RedirectToAction("Index");
         }

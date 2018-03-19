@@ -2,7 +2,6 @@
 
 <div>
     <h4>All Publications</h4>
-    <hr />
     <dl class="dl-horizontal">
     </dl>
 </div>
@@ -26,6 +25,10 @@
             <td>
                 @Html.DisplayNameFor(modelItem => book)
             </td>
+            <td>
+                @Html.ActionLink("Update", "UpdateView", "Book", new { id = book.BookId }, null) |
+                @Html.ActionLink("Delete", "DeleteView", "Book", new { id = book.BookId }, null)
+            </td>
         </tr>
     }
     @foreach (var magazine in Model.Magazines)
@@ -36,6 +39,10 @@
             </td>
             <td>
                 @Html.DisplayNameFor(modelItem => magazine)
+            </td>
+            <td>
+                @Html.ActionLink("Update", "UpdateView", "Magazine", new { id = magazine.MagazineId }, null) |
+                @Html.ActionLink("Delete", "DeleteView", "Magazine", new { id = magazine.MagazineId }, null)
             </td>
         </tr>
     }

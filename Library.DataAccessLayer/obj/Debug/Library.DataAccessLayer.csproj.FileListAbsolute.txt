@@ -28,3 +28,4 @@ C:\Users\Public\Documents\repositories\Library\Library.DataAccessLayer\obj\Debug
 C:\Users\Public\Documents\repositories\Library\Library.DataAccessLayer\obj\Debug\Library.DataAccessLayer.csproj.CoreCompileInputs.cache
 C:\Users\Public\Documents\repositories\Library\Library.DataAccessLayer\obj\Debug\Library.DataAccessLayer.dll
 C:\Users\Public\Documents\repositories\Library\Library.DataAccessLayer\obj\Debug\Library.DataAccessLayer.pdb
+C:\Users\Public\Documents\repositories\Library\Library.DataAccessLayer\obj\Debug\Library.DataAccessLayer.Migrations.AddedBrochuremodel.resources

@@ -24,7 +24,7 @@ namespace Library.DataAccessLayer.UnitOfWork
             get
             {
                 if (_bookRepository == null)
-                    _bookRepository = new BookRepository(_libraryContext);
+                    _bookRepository = new BookRepository(/*_libraryContext*/);
                 return _bookRepository;
             }
         }
