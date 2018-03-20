@@ -67,6 +67,8 @@
     <Compile Include="Repositories\AuthorRepository.cs" />
     <Compile Include="Repositories\BookRepository.cs" />
     <Compile Include="Repositories\MagazineRepository.cs" />
+    <Compile Include="SqlExpressions\BookAuthorSqlExpressions.cs" />
+    <Compile Include="SqlExpressions\BookSqlExpressions.cs" />
     <Compile Include="UnitOfWork\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>

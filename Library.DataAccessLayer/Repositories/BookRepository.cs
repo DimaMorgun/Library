@@ -1,9 +1,12 @@
 ﻿using Library.DataAccessLayer.Connection;
 using Library.DataAccessLayer.Interfaces;
+using Library.DataAccessLayer.SqlExpressions;
 using Library.EntityLayer.Models;
+
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection;
 
 namespace Library.DataAccessLayer.Repositories
 {
@@ -20,17 +23,8 @@ namespace Library.DataAccessLayer.Repositories
         {
             _connection.Open();
 
-            var sqlExpression = "SELECT " +
-                "Books.BookId, " +
-                "Books.Name, " +
-                "Books.YearOfPublishing, " +
-                "Authors.AuthorId, " +
-                "Authors.Name, " +
-                "Authors.Birthday, " +
-                "Authors.Deathday " +
-                "FROM Books " +
-                "FULL OUTER JOIN BookAuthor ON Books.BookId = BookAuthor.BookId " +
-                "LEFT OUTER JOIN Authors ON Authors.AuthorId = BookAuthor.AuthorId;";
+            var sqlExpression = BookSqlExpressions.GetAllSqlExpression();
+
             SqlCommand command = new SqlCommand(sqlExpression, _connection);
             SqlDataReader reader = command.ExecuteReader();
 
@@ -83,18 +77,7 @@ namespace Library.DataAccessLayer.Repositories
         {
             _connection.Open();
 
-            var sqlExpression = "SELECT " +
-                "Books.BookId, " +
-                "Books.Name, " +
-                "Books.YearOfPublishing, " +
-                "Authors.AuthorId, " +
-                "Authors.Name, " +
-                "Authors.Birthday, " +
-                "Authors.Deathday " +
-                "FROM Books " +
-                "FULL OUTER JOIN BookAuthor ON Books.BookId = BookAuthor.BookId " +
-                "LEFT OUTER JOIN Authors ON Authors.AuthorId = BookAuthor.AuthorId " +
-                $"WHERE Books.BookId IN ({id});";
+            var sqlExpression = BookSqlExpressions.GetByIdSqlExpression(id);
             SqlCommand command = new SqlCommand(sqlExpression, _connection);
             SqlDataReader reader = command.ExecuteReader();
 
@@ -146,8 +129,7 @@ namespace Library.DataAccessLayer.Repositories
         {
             _connection.Open();
 
-            var sqlExpression = "INSERT INTO Books(Name, YearOfPublishing) " +
-                $"VALUES('{book.Name}', {book.YearOfPublishing}); SELECT SCOPE_IDENTITY();";
+            var sqlExpression = BookSqlExpressions.InsertSqlExpression(book);
             SqlCommand command = new SqlCommand(sqlExpression, _connection);
             var bookId = command.ExecuteScalar();
 

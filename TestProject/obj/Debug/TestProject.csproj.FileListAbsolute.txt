@@ -1,0 +1,9 @@
+C:\Users\Public\Documents\repositories\Library\TestProject\bin\Debug\TestProject.exe.config
+C:\Users\Public\Documents\repositories\Library\TestProject\bin\Debug\TestProject.exe
+C:\Users\Public\Documents\repositories\Library\TestProject\bin\Debug\TestProject.pdb
+C:\Users\Public\Documents\repositories\Library\TestProject\bin\Debug\Library.EntityLayer.dll
+C:\Users\Public\Documents\repositories\Library\TestProject\bin\Debug\Library.EntityLayer.pdb
+C:\Users\Public\Documents\repositories\Library\TestProject\obj\Debug\TestProject.csprojResolveAssemblyReference.cache
+C:\Users\Public\Documents\repositories\Library\TestProject\obj\Debug\TestProject.csproj.CoreCompileInputs.cache
+C:\Users\Public\Documents\repositories\Library\TestProject\obj\Debug\TestProject.exe
+C:\Users\Public\Documents\repositories\Library\TestProject\obj\Debug\TestProject.pdb
