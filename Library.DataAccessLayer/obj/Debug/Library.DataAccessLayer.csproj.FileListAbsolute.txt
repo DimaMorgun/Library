@@ -29,3 +29,5 @@ C:\Users\Public\Documents\repositories\Library\Library.DataAccessLayer\obj\Debug
 C:\Users\Public\Documents\repositories\Library\Library.DataAccessLayer\obj\Debug\Library.DataAccessLayer.dll
 C:\Users\Public\Documents\repositories\Library\Library.DataAccessLayer\obj\Debug\Library.DataAccessLayer.pdb
 C:\Users\Public\Documents\repositories\Library\Library.DataAccessLayer\obj\Debug\Library.DataAccessLayer.Migrations.AddedBrochuremodel.resources
+C:\Users\Public\Documents\repositories\Library\Library.DataAccessLayer\bin\Debug\Library.ViewModelLayer.dll
+C:\Users\Public\Documents\repositories\Library\Library.DataAccessLayer\bin\Debug\Library.ViewModelLayer.pdb

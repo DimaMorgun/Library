@@ -7,3 +7,8 @@ C:\Users\Public\Documents\repositories\Library\TestProject\obj\Debug\TestProject
 C:\Users\Public\Documents\repositories\Library\TestProject\obj\Debug\TestProject.csproj.CoreCompileInputs.cache
 C:\Users\Public\Documents\repositories\Library\TestProject\obj\Debug\TestProject.exe
 C:\Users\Public\Documents\repositories\Library\TestProject\obj\Debug\TestProject.pdb
+C:\Users\Public\Documents\repositories\Library\TestProject\bin\Debug\Library.DataAccessLayer.dll
+C:\Users\Public\Documents\repositories\Library\TestProject\bin\Debug\EntityFramework.dll
+C:\Users\Public\Documents\repositories\Library\TestProject\bin\Debug\Library.DataAccessLayer.pdb
+C:\Users\Public\Documents\repositories\Library\TestProject\bin\Debug\Library.DataAccessLayer.dll.config
+C:\Users\Public\Documents\repositories\Library\TestProject\bin\Debug\EntityFramework.xml

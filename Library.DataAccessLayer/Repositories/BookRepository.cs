@@ -135,8 +135,7 @@ namespace Library.DataAccessLayer.Repositories
 
             foreach (var author in book.Authors)
             {
-                sqlExpression = "INSERT INTO BookAuthor(AuthorId, BookId) " +
-                $"VALUES('{author.AuthorId}', {bookId})";
+                sqlExpression = $"INSERT INTO BookAuthor (AuthorId, BookId) VALUES({author.AuthorId}, {bookId});";
                 command.CommandText = sqlExpression;
                 command.ExecuteNonQuery();
             }
@@ -148,13 +147,11 @@ namespace Library.DataAccessLayer.Repositories
         {
             _connection.Open();
 
-            var sqlExpression = "UPDATE Books " +
-                $"SET Name = '{book.Name}', YearOfPublishing = {book.YearOfPublishing} " +
-                $"WHERE Books.BookId IN({book.BookId});";
+            var sqlExpression = BookSqlExpressions.UpdateSqlExpression(book);
             SqlCommand command = new SqlCommand(sqlExpression, _connection);
             command.ExecuteNonQuery();
 
-            sqlExpression = $"DELETE FROM BookAuthor WHERE BookId IN ({book.BookId});";
+            sqlExpression = $"DELETE FROM BookAuthor WHERE BookId = {book.BookId};";
             command.CommandText = sqlExpression;
             command.ExecuteNonQuery();
 

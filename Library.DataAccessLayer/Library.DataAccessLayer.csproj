@@ -67,7 +67,6 @@
     <Compile Include="Repositories\AuthorRepository.cs" />
     <Compile Include="Repositories\BookRepository.cs" />
     <Compile Include="Repositories\MagazineRepository.cs" />
-    <Compile Include="SqlExpressions\BookAuthorSqlExpressions.cs" />
     <Compile Include="SqlExpressions\BookSqlExpressions.cs" />
     <Compile Include="UnitOfWork\UnitOfWork.cs" />
   </ItemGroup>
@@ -89,6 +88,10 @@
     <ProjectReference Include="..\Library.EntityLayer\Library.EntityLayer.csproj">
       <Project>{7471101b-4fa2-469a-9c3e-287c2226f6cb}</Project>
       <Name>Library.EntityLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Library.ViewModelLayer\Library.ViewModelLayer.csproj">
+      <Project>{EE2724B5-B05C-49EC-A97C-EB0A40A3CD43}</Project>
+      <Name>Library.ViewModelLayer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

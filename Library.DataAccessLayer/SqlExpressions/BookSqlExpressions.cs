@@ -106,5 +106,54 @@ namespace Library.DataAccessLayer.SqlExpressions
 
             return sqlExpression + sqlValuesExpression;
         }
+
+        public static string UpdateSqlExpression(Book book)
+        {
+            var bookType = typeof(Book);
+
+            PropertyInfo[] bookProperties = bookType.GetProperties();
+
+            bookProperties = bookProperties.Where(x => x.PropertyType != typeof(ICollection<Author>)).ToArray();
+
+            var sqlExpression = $"UPDATE {bookType.Name}s ";
+            var sqlSetExpression = $"SET ";
+            var sqlWhereExpression = $"WHERE ";
+            for (int i = 0; i < bookProperties.Length; i++)
+            {
+                if (i == 0)
+                {
+                    sqlWhereExpression += $"{bookType.Name}s.{bookProperties[i].Name} = {book.BookId};";
+                    continue;
+                }
+                sqlSetExpression += $"{bookProperties[i].Name} = ";
+                sqlSetExpression += bookProperties[i].PropertyType == typeof(String) ?
+                    $"'{book.GetType().GetProperty(bookProperties[i].Name).GetValue(book, null)}'" :
+                    $"{book.GetType().GetProperty(bookProperties[i].Name).GetValue(book, null)}";
+                sqlSetExpression += i != bookProperties.Length - 1 ? string.Format(", ") : string.Format(" ");
+            }
+
+            return sqlExpression + sqlSetExpression + sqlWhereExpression;
+        }
+
+        public static string DeleteSqlexpression(int id)
+        {
+            var bookType = typeof(Book);
+
+            PropertyInfo[] bookProperties = bookType.GetProperties();
+
+            bookProperties = bookProperties.Where(x => x.PropertyType != typeof(ICollection<Author>)).ToArray();
+
+            var sqlExpression = $"DELETE FROM {bookType.Name}s WHERE ";
+            for (int i = 0; i < bookProperties.Length; i++)
+            {
+                if (i == 0)
+                {
+                    sqlExpression += $"{bookProperties[i].Name} = {id};";
+                    continue;
+                }
+            }
+
+            return sqlExpression;
+        }
     }
 }

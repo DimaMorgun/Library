@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BookAuthorsViewModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -49,6 +50,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Library.DataAccessLayer\Library.DataAccessLayer.csproj">
+      <Project>{3D58096A-0C52-4A6C-8057-DEA11435AA5D}</Project>
+      <Name>Library.DataAccessLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Library.EntityLayer\Library.EntityLayer.csproj">
       <Project>{7471101B-4FA2-469A-9C3E-287C2226F6CB}</Project>
       <Name>Library.EntityLayer</Name>
