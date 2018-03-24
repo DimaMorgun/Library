@@ -18,7 +18,7 @@ namespace Library.WEB.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            List<BookViewModel> allBooks = _bookService.GetList();
+            List<BookViewModel> allBooks = _bookService.GetAll();
 
             return View(allBooks);
         }
@@ -34,7 +34,7 @@ namespace Library.WEB.Controllers
         [HttpPost]
         public ActionResult Create(BookViewModel book, int[] selectedItems)
         {
-            _bookService.Create(book, selectedItems);
+            _bookService.Insert(book, selectedItems);
 
             return RedirectToAction("Index");
         }
@@ -42,7 +42,7 @@ namespace Library.WEB.Controllers
         [HttpGet]
         public ActionResult GetByIdView(int id)
         {
-            BookViewModel book = _bookService.GetByid(id);
+            BookViewModel book = _bookService.Get(id);
 
             return View(book);
         }
@@ -66,7 +66,7 @@ namespace Library.WEB.Controllers
         [HttpGet]
         public ActionResult DeleteView(int id)
         {
-            BookViewModel book = _bookService.GetByid(id);
+            BookViewModel book = _bookService.Get(id);
 
             return View(book);
         }

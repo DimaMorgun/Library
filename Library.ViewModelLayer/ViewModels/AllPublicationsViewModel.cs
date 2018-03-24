@@ -6,11 +6,13 @@ namespace Library.ViewModelLayer.ViewModels
     {
         public ICollection<BookViewModel> Books { get; set; }
         public ICollection<MagazineViewModel> Magazines { get; set; }
+        public ICollection<BrochureViewModel> Brochures { get; set; }
 
         public AllPublicationsViewModel()
         {
             Books = new List<BookViewModel>();
             Magazines = new List<MagazineViewModel>();
+            Brochures = new List<BrochureViewModel>();
         }
     }
 }

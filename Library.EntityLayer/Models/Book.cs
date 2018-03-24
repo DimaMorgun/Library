@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using Dapper.Contrib.Extensions;
 
 namespace Library.EntityLayer.Models
 {
@@ -9,12 +8,5 @@ namespace Library.EntityLayer.Models
         public int BookId { get; set; }
         public string Name { get; set; }
         public int YearOfPublishing { get; set; }
-
-        public virtual ICollection<Author> Authors { get; set; }
-
-        public Book()
-        {
-            Authors = new List<Author>();
-        }
     }
 }

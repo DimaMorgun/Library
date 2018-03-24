@@ -17,7 +17,7 @@ namespace Library.WEB.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            List<MagazineViewModel> allMagazines = _magazineService.GetList();
+            List<MagazineViewModel> allMagazines = _magazineService.GetAll();
 
             return View(allMagazines);
         }
@@ -31,7 +31,7 @@ namespace Library.WEB.Controllers
         [HttpPost]
         public ActionResult Create(MagazineViewModel magazine)
         {
-            _magazineService.Create(magazine);
+            _magazineService.Insert(magazine);
 
             return RedirectToAction("Index");
         }
@@ -39,7 +39,7 @@ namespace Library.WEB.Controllers
         [HttpGet]
         public ActionResult GetByIdView(int id)
         {
-            MagazineViewModel magazine = _magazineService.GetByid(id);
+            MagazineViewModel magazine = _magazineService.Get(id);
 
             return View(magazine);
         }
@@ -47,7 +47,7 @@ namespace Library.WEB.Controllers
         [HttpGet]
         public ActionResult UpdateView(int id)
         {
-            MagazineViewModel magazine = _magazineService.GetByid(id);
+            MagazineViewModel magazine = _magazineService.Get(id);
 
             return View(magazine);
         }
@@ -63,7 +63,7 @@ namespace Library.WEB.Controllers
         [HttpGet]
         public ActionResult DeleteView(int id)
         {
-            MagazineViewModel magazine = _magazineService.GetByid(id);
+            MagazineViewModel magazine = _magazineService.Get(id);
 
             return View(magazine);
         }

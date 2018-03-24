@@ -1,5 +1,6 @@
 ﻿using Library.BusinessLogicLayer.Services;
 using Library.ViewModelLayer.ViewModels;
+
 using System.Web.Mvc;
 
 namespace Library.WEB.Controllers
@@ -21,7 +22,7 @@ namespace Library.WEB.Controllers
         [HttpGet]
         public ActionResult AllPublications()
         {
-            AllPublicationsViewModel allPublications = _allPublicationsService.GetList();
+            AllPublicationsViewModel allPublications = _allPublicationsService.GetAll();
 
             return View(allPublications);
         }

@@ -8,4 +8,7 @@ C:\Users\Public\Documents\repositories\Library\Library.EntityLayer\bin\Debug\Lib
 C:\Users\Public\Documents\repositories\Library\Library.EntityLayer\obj\Debug\Library.EntityLayer.csproj.CoreCompileInputs.cache
 C:\Users\Public\Documents\repositories\Library\Library.EntityLayer\obj\Debug\Library.EntityLayer.dll
 C:\Users\Public\Documents\repositories\Library\Library.EntityLayer\obj\Debug\Library.EntityLayer.pdb
-C:\Users\Public\Documents\repositories\Library\Library.EntityLayer\obj\Debug\Library.EntityLayer.csprojResolveAssemblyReference.cache
+C:\Users\Public\Documents\repositories\Library\Library.EntityLayer\bin\Debug\Dapper.Contrib.dll
+C:\Users\Public\Documents\repositories\Library\Library.EntityLayer\bin\Debug\Dapper.dll
+C:\Users\Public\Documents\repositories\Library\Library.EntityLayer\bin\Debug\Dapper.xml
+C:\Users\Public\Documents\repositories\Library\Library.EntityLayer\bin\Debug\Dapper.Contrib.xml

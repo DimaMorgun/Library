@@ -18,7 +18,7 @@ namespace Library.WEB.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            List<AuthorViewModel> allAuthors = _authorService.GetList();
+            List<AuthorViewModel> allAuthors = _authorService.GetAll();
 
             return View(allAuthors);
         }
@@ -34,7 +34,7 @@ namespace Library.WEB.Controllers
         [HttpPost]
         public ActionResult Create(AuthorViewModel author, int[] selectedItems)
         {
-            _authorService.Create(author, selectedItems);
+            _authorService.Insert(author, selectedItems);
 
             return RedirectToAction("Index");
         }
@@ -42,7 +42,7 @@ namespace Library.WEB.Controllers
         [HttpGet]
         public ActionResult GetByIdView(int id)
         {
-            AuthorViewModel author = _authorService.GetByid(id);
+            AuthorViewModel author = _authorService.Get(id);
 
             return View(author);
         }
@@ -66,7 +66,7 @@ namespace Library.WEB.Controllers
         [HttpGet]
         public ActionResult DeleteView(int id)
         {
-            AuthorViewModel author = _authorService.GetByid(id);
+            AuthorViewModel author = _authorService.Get(id);
 
             return View(author);
         }

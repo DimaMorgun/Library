@@ -10,46 +10,71 @@ namespace Library.DataAccessLayer.UnitOfWork
     public class UnitOfWork : IUnitOfWork
     {
         private LibraryDataAccessContext _libraryContext;
-        private BookRepository _bookRepository;
-        private AuthorRepository _authorRepository;
-        private MagazineRepository _magazineRepository;
+        private GenericRepository<Book> _bookRepository;
+        private GenericRepository<Author> _authorRepository;
+        private BookAuthorRepository _bookAuthorRepository;
+        private GenericRepository<Magazine> _magazineRepository;
+        private GenericRepository<Brochure> _brochureRepository;
+        private GenericRepository<PublicationHouse> _publicationHouseRepository;
 
         public UnitOfWork()
         {
             _libraryContext = new LibraryDataAccessContext();
         }
 
-        public IRepository<Book> Books
+        public IGenericRepository<Book> Books
         {
             get
             {
                 if (_bookRepository == null)
-                    _bookRepository = new BookRepository(/*_libraryContext*/);
+                    _bookRepository = new GenericRepository<Book>();
                 return _bookRepository;
             }
         }
-        public IRepository<Author> Authors
+        public IGenericRepository<Author> Authors
         {
             get
             {
                 if (_authorRepository == null)
-                    _authorRepository = new AuthorRepository(_libraryContext);
+                    _authorRepository = new GenericRepository<Author>();
                 return _authorRepository;
             }
         }
-        public IRepository<Magazine> Magazines
+        public BookAuthorRepository BookAuthors
+        {
+            get
+            {
+                if (_bookAuthorRepository == null)
+                    _bookAuthorRepository = new BookAuthorRepository();
+                return _bookAuthorRepository;
+            }
+        }
+        public IGenericRepository<Magazine> Magazines
         {
             get
             {
                 if (_magazineRepository == null)
-                    _magazineRepository = new MagazineRepository(_libraryContext);
+                    _magazineRepository = new GenericRepository<Magazine>();
                 return _magazineRepository;
             }
         }
-
-        public void Save()
+        public IGenericRepository<Brochure> Brochures
         {
-            _libraryContext.SaveChanges();
+            get
+            {
+                if (_brochureRepository == null)
+                    _brochureRepository = new GenericRepository<Brochure>();
+                return _brochureRepository;
+            }
+        }
+        public IGenericRepository<PublicationHouse> PublicationHousees
+        {
+            get
+            {
+                if (_publicationHouseRepository == null)
+                    _publicationHouseRepository = new GenericRepository<PublicationHouse>();
+                return _publicationHouseRepository;
+            }
         }
 
         private bool disposed = false;

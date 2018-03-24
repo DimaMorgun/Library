@@ -45,9 +45,12 @@
     <Compile Include="ViewModels\AllPublicationsViewModel.cs" />
     <Compile Include="ViewModels\AuthorBooksViewModel.cs" />
     <Compile Include="ViewModels\AuthorViewModel.cs" />
+    <Compile Include="ViewModels\BookAuthorsTableViewModel.cs" />
     <Compile Include="ViewModels\BookAuthorsViewModel.cs" />
     <Compile Include="ViewModels\BookViewModel.cs" />
+    <Compile Include="ViewModels\BrochureViewModel.cs" />
     <Compile Include="ViewModels\MagazineViewModel.cs" />
+    <Compile Include="ViewModels\PublicationHouseViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

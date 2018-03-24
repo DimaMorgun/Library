@@ -30,6 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=1.50.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.50.4\lib\net451\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper.Contrib, Version=1.50.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.Contrib.1.50.4\lib\net451\Dapper.Contrib.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -40,6 +46,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -52,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Connection\CurrentConnection.cs" />
     <Compile Include="Context\LibraryDataAccessContext.cs" />
+    <Compile Include="Interfaces\IGenericRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Migrations\201803151352488_InitializeDB.cs" />
@@ -62,11 +70,63 @@
     <Compile Include="Migrations\201803191409541_Added Brochure model..Designer.cs">
       <DependentUpon>201803191409541_Added Brochure model..cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803231855336_Add PublicationHouse.cs" />
+    <Compile Include="Migrations\201803231855336_Add PublicationHouse.Designer.cs">
+      <DependentUpon>201803231855336_Add PublicationHouse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803232200554_Change Book-Author from many-many to one-many, both..cs" />
+    <Compile Include="Migrations\201803232200554_Change Book-Author from many-many to one-many, both..Designer.cs">
+      <DependentUpon>201803232200554_Change Book-Author from many-many to one-many, both..cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803232206127_Change Book-Author from many-many to one-many, both.%282%29.cs" />
+    <Compile Include="Migrations\201803232206127_Change Book-Author from many-many to one-many, both.%282%29.Designer.cs">
+      <DependentUpon>201803232206127_Change Book-Author from many-many to one-many, both.%282%29.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803232215440_Change Book-Author from many-many to one-many, both.%283%29.cs" />
+    <Compile Include="Migrations\201803232215440_Change Book-Author from many-many to one-many, both.%283%29.Designer.cs">
+      <DependentUpon>201803232215440_Change Book-Author from many-many to one-many, both.%283%29.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803232227210_Change Book-Author from many-many to one-many, both.%284%29.cs" />
+    <Compile Include="Migrations\201803232227210_Change Book-Author from many-many to one-many, both.%284%29.Designer.cs">
+      <DependentUpon>201803232227210_Change Book-Author from many-many to one-many, both.%284%29.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803232239413_Change Book-Author from many-many to one-many, both.%285%29.cs" />
+    <Compile Include="Migrations\201803232239413_Change Book-Author from many-many to one-many, both.%285%29.Designer.cs">
+      <DependentUpon>201803232239413_Change Book-Author from many-many to one-many, both.%285%29.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803232245058_Change Book-Author from many-many to one-many, both.%286%29.cs" />
+    <Compile Include="Migrations\201803232245058_Change Book-Author from many-many to one-many, both.%286%29.Designer.cs">
+      <DependentUpon>201803232245058_Change Book-Author from many-many to one-many, both.%286%29.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803232316161_Change Book-Author from many-many to one-many, both.%287%29.cs" />
+    <Compile Include="Migrations\201803232316161_Change Book-Author from many-many to one-many, both.%287%29.Designer.cs">
+      <DependentUpon>201803232316161_Change Book-Author from many-many to one-many, both.%287%29.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803232317521_Change Book-Author from many-many to one-many, both.%288%29.cs" />
+    <Compile Include="Migrations\201803232317521_Change Book-Author from many-many to one-many, both.%288%29.Designer.cs">
+      <DependentUpon>201803232317521_Change Book-Author from many-many to one-many, both.%288%29.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803232321007_Change Book-Author from many-many to one-many, both.%289%29.cs" />
+    <Compile Include="Migrations\201803232321007_Change Book-Author from many-many to one-many, both.%289%29.Designer.cs">
+      <DependentUpon>201803232321007_Change Book-Author from many-many to one-many, both.%289%29.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803241655196_Change to singpe ef model..cs" />
+    <Compile Include="Migrations\201803241655196_Change to singpe ef model..Designer.cs">
+      <DependentUpon>201803241655196_Change to singpe ef model..cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803241705110_Change to singpe ef model.%28HashSet%29.cs" />
+    <Compile Include="Migrations\201803241705110_Change to singpe ef model.%28HashSet%29.Designer.cs">
+      <DependentUpon>201803241705110_Change to singpe ef model.%28HashSet%29.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803241726247_Returned model state..cs" />
+    <Compile Include="Migrations\201803241726247_Returned model state..Designer.cs">
+      <DependentUpon>201803241726247_Returned model state..cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\AuthorRepository.cs" />
+    <Compile Include="Repositories\BookAuthorRepository.cs" />
     <Compile Include="Repositories\BookRepository.cs" />
-    <Compile Include="Repositories\MagazineRepository.cs" />
+    <Compile Include="Repositories\GenericRepository.cs" />
     <Compile Include="SqlExpressions\BookSqlExpressions.cs" />
     <Compile Include="UnitOfWork\UnitOfWork.cs" />
   </ItemGroup>
@@ -82,6 +142,45 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803191409541_Added Brochure model..resx">
       <DependentUpon>201803191409541_Added Brochure model..cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803231855336_Add PublicationHouse.resx">
+      <DependentUpon>201803231855336_Add PublicationHouse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803232200554_Change Book-Author from many-many to one-many, both..resx">
+      <DependentUpon>201803232200554_Change Book-Author from many-many to one-many, both..cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803232206127_Change Book-Author from many-many to one-many, both.%282%29.resx">
+      <DependentUpon>201803232206127_Change Book-Author from many-many to one-many, both.%282%29.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803232215440_Change Book-Author from many-many to one-many, both.%283%29.resx">
+      <DependentUpon>201803232215440_Change Book-Author from many-many to one-many, both.%283%29.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803232227210_Change Book-Author from many-many to one-many, both.%284%29.resx">
+      <DependentUpon>201803232227210_Change Book-Author from many-many to one-many, both.%284%29.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803232239413_Change Book-Author from many-many to one-many, both.%285%29.resx">
+      <DependentUpon>201803232239413_Change Book-Author from many-many to one-many, both.%285%29.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803232245058_Change Book-Author from many-many to one-many, both.%286%29.resx">
+      <DependentUpon>201803232245058_Change Book-Author from many-many to one-many, both.%286%29.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803232316161_Change Book-Author from many-many to one-many, both.%287%29.resx">
+      <DependentUpon>201803232316161_Change Book-Author from many-many to one-many, both.%287%29.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803232317521_Change Book-Author from many-many to one-many, both.%288%29.resx">
+      <DependentUpon>201803232317521_Change Book-Author from many-many to one-many, both.%288%29.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803232321007_Change Book-Author from many-many to one-many, both.%289%29.resx">
+      <DependentUpon>201803232321007_Change Book-Author from many-many to one-many, both.%289%29.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803241655196_Change to singpe ef model..resx">
+      <DependentUpon>201803241655196_Change to singpe ef model..cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803241705110_Change to singpe ef model.%28HashSet%29.resx">
+      <DependentUpon>201803241705110_Change to singpe ef model.%28HashSet%29.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803241726247_Returned model state..resx">
+      <DependentUpon>201803241726247_Returned model state..cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

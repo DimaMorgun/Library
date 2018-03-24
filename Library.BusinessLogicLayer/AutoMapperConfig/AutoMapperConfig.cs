@@ -16,6 +16,9 @@ namespace Library.BusinessLogicLayer.AutoMapperConfig
                 cfg.CreateMap<AuthorViewModel, Author>();
                 cfg.CreateMap<Magazine, MagazineViewModel>();
                 cfg.CreateMap<MagazineViewModel, Magazine>();
+                cfg.CreateMap<Brochure, BrochureViewModel>();
+                cfg.CreateMap<BrochureViewModel, Brochure>();
+                cfg.CreateMap<BookAuthor, BookAuthorsTableViewModel>();
             });
         }
     }

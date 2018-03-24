@@ -4,10 +4,12 @@ namespace Library.DataAccessLayer.Interfaces
 {
     public interface IRepository<T> where T : class
     {
-        List<T> GetList();
-        T GetByid(int id);
-        void Create(T item);
+        List<T> GetAll();
+        T Get(int id);
+        void Insert(T item);
+        void Insert(List<T> item);
         void Update(T item);
-        void Delete(int id);
+        void Update(List<T> items);
+        void Delete(T item);
     }
 }

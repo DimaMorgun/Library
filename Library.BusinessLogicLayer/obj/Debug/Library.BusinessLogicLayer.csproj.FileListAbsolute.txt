@@ -39,3 +39,7 @@ C:\Users\Public\Documents\repositories\Library\Library.BusinessLogicLayer\obj\De
 C:\Users\Public\Documents\repositories\Library\Library.BusinessLogicLayer\obj\Debug\Library.BusinessLogicLayer.dll
 C:\Users\Public\Documents\repositories\Library\Library.BusinessLogicLayer\obj\Debug\Library.BusinessLogicLayer.pdb
 C:\Users\Public\Documents\repositories\Library\Library.BusinessLogicLayer\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Public\Documents\repositories\Library\Library.BusinessLogicLayer\bin\Debug\Dapper.Contrib.dll
+C:\Users\Public\Documents\repositories\Library\Library.BusinessLogicLayer\bin\Debug\Dapper.dll
+C:\Users\Public\Documents\repositories\Library\Library.BusinessLogicLayer\bin\Debug\Dapper.Contrib.xml
+C:\Users\Public\Documents\repositories\Library\Library.BusinessLogicLayer\bin\Debug\Dapper.xml

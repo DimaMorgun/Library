@@ -19,32 +19,31 @@ namespace Library.BusinessLogicLayer.Services
             _unitOfWork = new UnitOfWork();
         }
 
-        public void Create(MagazineViewModel magazine)
+        public void Insert(MagazineViewModel magazine)
         {
             Magazine magazineModel = Mapper.Map<MagazineViewModel, Magazine>(magazine);
 
-            _unitOfWork.Magazines.Create(magazineModel);
-            _unitOfWork.Save();
+            _unitOfWork.Magazines.Insert(magazineModel);
         }
 
         public void Delete(int id)
         {
-            _unitOfWork.Magazines.Delete(id);
-            _unitOfWork.Save();
+            var magazineModel = _unitOfWork.Magazines.Get(id);
+            _unitOfWork.Magazines.Delete(magazineModel);
         }
 
-        public MagazineViewModel GetByid(int id)
+        public MagazineViewModel Get(int id)
         {
-            Magazine magazineModel = _unitOfWork.Magazines.GetByid(id);
+            Magazine magazineModel = _unitOfWork.Magazines.Get(id);
 
             MagazineViewModel magazineViewModel = Mapper.Map<Magazine, MagazineViewModel>(magazineModel);
 
             return magazineViewModel;
         }
 
-        public List<MagazineViewModel> GetList()
+        public List<MagazineViewModel> GetAll()
         {
-            List<Magazine> allMagazinesModel = _unitOfWork.Magazines.GetList();
+            List<Magazine> allMagazinesModel = _unitOfWork.Magazines.GetAll();
 
             List<MagazineViewModel> allMagazinesViewModel = Mapper.Map<List<Magazine>, List<MagazineViewModel>>(allMagazinesModel);
 
@@ -53,18 +52,17 @@ namespace Library.BusinessLogicLayer.Services
 
         public void Update(MagazineViewModel magazine)
         {
-            Magazine magazineModel = _unitOfWork.Magazines.GetByid(magazine.MagazineId);
+            Magazine magazineModel = _unitOfWork.Magazines.Get(magazine.MagazineId);
             magazineModel.Name = magazine.Name;
             magazineModel.Number = magazine.Number;
             magazineModel.YearOfPublishing = magazine.YearOfPublishing;
 
             _unitOfWork.Magazines.Update(magazineModel);
-            _unitOfWork.Save();
         }
 
         public void SaveToJSON(int id)
         {
-            Magazine magazineModel = _unitOfWork.Magazines.GetByid(id);
+            Magazine magazineModel = _unitOfWork.Magazines.Get(id);
 
             string json = JsonConvert.SerializeObject(
                 magazineModel,

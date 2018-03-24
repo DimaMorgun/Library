@@ -33,7 +33,7 @@
                 {
                     <div class="form-check">
                         <input type="checkbox" class="form-check-input" name="selectedItems" value="@author.AuthorId" id="@author.AuthorId"
-                               @(Model.Book.Authors.FirstOrDefault(x => x.AuthorId == author.AuthorId) != null ? "checked=\"checked\"" : "") />
+                               @(Model.BookAuthors.FirstOrDefault(x => x.AuthorId == author.AuthorId && x.BookId == Model.Book.BookId) != null ? "checked=\"checked\"" : "") />
                         <label class="form-check-label" for="@author.AuthorId">@author.Name</label>
                     </div>
                 }

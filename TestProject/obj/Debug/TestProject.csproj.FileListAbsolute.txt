@@ -12,3 +12,7 @@ C:\Users\Public\Documents\repositories\Library\TestProject\bin\Debug\EntityFrame
 C:\Users\Public\Documents\repositories\Library\TestProject\bin\Debug\Library.DataAccessLayer.pdb
 C:\Users\Public\Documents\repositories\Library\TestProject\bin\Debug\Library.DataAccessLayer.dll.config
 C:\Users\Public\Documents\repositories\Library\TestProject\bin\Debug\EntityFramework.xml
+C:\Users\Public\Documents\repositories\Library\TestProject\bin\Debug\Dapper.Contrib.dll
+C:\Users\Public\Documents\repositories\Library\TestProject\bin\Debug\Dapper.dll
+C:\Users\Public\Documents\repositories\Library\TestProject\bin\Debug\Dapper.Contrib.xml
+C:\Users\Public\Documents\repositories\Library\TestProject\bin\Debug\Dapper.xml

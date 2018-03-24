@@ -17,14 +17,16 @@ namespace Library.BusinessLogicLayer.Services
             _unitOfWork = new UnitOfWork();
         }
 
-        public AllPublicationsViewModel GetList()
+        public AllPublicationsViewModel GetAll()
         {
-            List<Book> allBooksModel = _unitOfWork.Books.GetList();
-            List<Magazine> allMagazinesModel = _unitOfWork.Magazines.GetList();
+            List<Book> allBooksModel = _unitOfWork.Books.GetAll();
+            List<Magazine> allMagazinesModel = _unitOfWork.Magazines.GetAll();
+            List<Brochure> allBrochuresModel = _unitOfWork.Brochures.GetAll();
 
             var allPublicationsViewModel = new AllPublicationsViewModel();
             allPublicationsViewModel.Books = Mapper.Map<List<Book>, List<BookViewModel>>(allBooksModel);
             allPublicationsViewModel.Magazines = Mapper.Map<List<Magazine>, List<MagazineViewModel>>(allMagazinesModel);
+            allPublicationsViewModel.Brochures = Mapper.Map<List<Brochure>, List<BrochureViewModel>>(allBrochuresModel);
 
             return allPublicationsViewModel;
         }

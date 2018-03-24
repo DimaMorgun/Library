@@ -238,3 +238,7 @@ C:\Users\Public\Documents\repositories\Library\Library.WEB\bin\System.Net.Http.F
 C:\Users\Public\Documents\repositories\Library\Library.WEB\bin\System.Web.Http.xml
 C:\Users\Public\Documents\repositories\Library\Library.WEB\bin\System.Web.Http.WebHost.dll
 C:\Users\Public\Documents\repositories\Library\Library.WEB\bin\System.Web.Http.WebHost.xml
+C:\Users\Public\Documents\repositories\Library\Library.WEB\bin\Dapper.Contrib.dll
+C:\Users\Public\Documents\repositories\Library\Library.WEB\bin\Dapper.dll
+C:\Users\Public\Documents\repositories\Library\Library.WEB\bin\Dapper.Contrib.xml
+C:\Users\Public\Documents\repositories\Library\Library.WEB\bin\Dapper.xml
