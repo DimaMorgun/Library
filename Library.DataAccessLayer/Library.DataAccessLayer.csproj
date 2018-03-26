@@ -122,6 +122,22 @@
     <Compile Include="Migrations\201803241726247_Returned model state..Designer.cs">
       <DependentUpon>201803241726247_Returned model state..cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803261404581_Change protected to public in BookAuthor model..cs" />
+    <Compile Include="Migrations\201803261404581_Change protected to public in BookAuthor model..Designer.cs">
+      <DependentUpon>201803261404581_Change protected to public in BookAuthor model..cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803261447083_Comment in BookAuthor model..cs" />
+    <Compile Include="Migrations\201803261447083_Comment in BookAuthor model..Designer.cs">
+      <DependentUpon>201803261447083_Comment in BookAuthor model..cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803261452353_Change to old relations in Book to Authors..cs" />
+    <Compile Include="Migrations\201803261452353_Change to old relations in Book to Authors..Designer.cs">
+      <DependentUpon>201803261452353_Change to old relations in Book to Authors..cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803261459006_Discard last changes..cs" />
+    <Compile Include="Migrations\201803261459006_Discard last changes..Designer.cs">
+      <DependentUpon>201803261459006_Discard last changes..cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BookAuthorRepository.cs" />
@@ -181,6 +197,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803241726247_Returned model state..resx">
       <DependentUpon>201803241726247_Returned model state..cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803261404581_Change protected to public in BookAuthor model..resx">
+      <DependentUpon>201803261404581_Change protected to public in BookAuthor model..cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803261447083_Comment in BookAuthor model..resx">
+      <DependentUpon>201803261447083_Comment in BookAuthor model..cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803261452353_Change to old relations in Book to Authors..resx">
+      <DependentUpon>201803261452353_Change to old relations in Book to Authors..cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803261459006_Discard last changes..resx">
+      <DependentUpon>201803261459006_Discard last changes..cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

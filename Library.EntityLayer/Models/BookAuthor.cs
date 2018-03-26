@@ -7,8 +7,8 @@ namespace Library.EntityLayer.Models
         [Key]
         public int BookAuthorId { get; set; }
         public int BookId { get; set; }
-        protected virtual Book Book { get; set; }
+        public virtual Book Book { get; set; }
         public int AuthorId { get; set; }
-        protected virtual Author Author { get; set; }
+        public virtual Author Author { get; set; }
     }
 }

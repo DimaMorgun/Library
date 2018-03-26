@@ -242,3 +242,13 @@ C:\Users\Public\Documents\repositories\Library\Library.WEB\bin\Dapper.Contrib.dl
 C:\Users\Public\Documents\repositories\Library\Library.WEB\bin\Dapper.dll
 C:\Users\Public\Documents\repositories\Library\Library.WEB\bin\Dapper.Contrib.xml
 C:\Users\Public\Documents\repositories\Library\Library.WEB\bin\Dapper.xml
+C:\Users\Anuitex-52\source\repos\Library\Library.WEB\bin\System.Net.Http.Formatting.dll
+C:\Users\Anuitex-52\source\repos\Library\Library.WEB\bin\System.Web.Http.dll
+C:\Users\Anuitex-52\source\repos\Library\Library.WEB\bin\System.Web.Http.WebHost.dll
+C:\Users\Anuitex-52\source\repos\Library\Library.WEB\bin\Dapper.Contrib.dll
+C:\Users\Anuitex-52\source\repos\Library\Library.WEB\bin\Dapper.dll
+C:\Users\Anuitex-52\source\repos\Library\Library.WEB\bin\System.Net.Http.Formatting.xml
+C:\Users\Anuitex-52\source\repos\Library\Library.WEB\bin\System.Web.Http.xml
+C:\Users\Anuitex-52\source\repos\Library\Library.WEB\bin\System.Web.Http.WebHost.xml
+C:\Users\Anuitex-52\source\repos\Library\Library.WEB\bin\Dapper.Contrib.xml
+C:\Users\Anuitex-52\source\repos\Library\Library.WEB\bin\Dapper.xml
