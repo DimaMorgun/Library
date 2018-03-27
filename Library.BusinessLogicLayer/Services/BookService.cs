@@ -23,19 +23,23 @@ namespace Library.BusinessLogicLayer.Services
         public void Insert(BookViewModel book, int[] selectedItems)
         {
             Book bookModel = Mapper.Map<BookViewModel, Book>(book);
-            var authorsModel = new List<BookAuthor>();
+            var bookAuthorsModel = new List<BookAuthor>();
 
             var bookId = _unitOfWork.Books.Insert(bookModel);
 
             if (selectedItems != null)
             {
-                foreach (var author in _unitOfWork.Authors.GetAll().Where(x => selectedItems.Contains(x.AuthorId)))
+                List<Author> selectedAuthors = _unitOfWork.Authors.GetAll().Where(x => selectedItems.Contains(x.AuthorId)).ToList();
+                foreach (var author in selectedAuthors)
                 {
-                    //authorsModel.Add(new BookAuthor() { BookId = bookId, AuthorId = author.AuthorId });
+                    bookAuthorsModel.Add(new BookAuthor() { BookId = bookId, AuthorId = author.AuthorId });
                 }
             }
 
-            _unitOfWork.BookAuthors.Insert(authorsModel);
+            foreach (var item in bookAuthorsModel)
+            {
+                _unitOfWork.BookAuthors.Insert(item);
+            }
         }
 
         public void Delete(int id)
@@ -49,12 +53,16 @@ namespace Library.BusinessLogicLayer.Services
             List<BookAuthor> bookAuthors = _unitOfWork.BookAuthors.GetAllByBookId(id);
 
             var book = new Book() { BookId = bookAuthors.ElementAt(0).Book.BookId, Name = bookAuthors.ElementAt(0).Book.Name, YearOfPublishing = bookAuthors.ElementAt(0).Book.YearOfPublishing };
-            var authors = new List<Author>();
-            foreach (var bookAuthor in bookAuthors)
+            List<Author> authors = new List<Author>();
+            foreach (var item in bookAuthors)
             {
-                authors.Add(bookAuthor.Author);
+                if (item.Author != null)
+                {
+                    authors.Add(item.Author);
+                }
             }
-            var resultBook = Mapper.Map<Book, BookViewModel>(book);
+
+            BookViewModel resultBook = Mapper.Map<Book, BookViewModel>(book);
             resultBook.Authors = Mapper.Map<List<Author>, List<AuthorViewModel>>(authors);
 
             return resultBook;
@@ -97,47 +105,41 @@ namespace Library.BusinessLogicLayer.Services
             {
                 Book = bookViewModel,
                 Authors = authorViewModel,
-                //BookAuthors = bookAuthorsTableViewModel
+                BookAuthors = bookAuthorsTableViewModel
             };
 
             return bookAuthorsViewModel;
         }
 
-        //TODO: REWRITE
         public void Update(BookViewModel book, int[] selectedItems)
         {
-            //Book bookModel = _unitOfWork.Books.Get(book.BookId);
-            //bookModel.Name = book.Name;
-            //bookModel.YearOfPublishing = book.YearOfPublishing;
-            //_unitOfWork.Books.Update(bookModel);
+            Book bookModel = _unitOfWork.Books.Get(book.BookId);
+            bookModel.Name = book.Name;
+            bookModel.YearOfPublishing = book.YearOfPublishing;
+            _unitOfWork.Books.Update(bookModel);
 
-            //var bookAuthor = new BookAuthor();
-            //var newBookAuthor = new DataAccessLayer.Context.LibraryDataAccessContext().BookAuthors.Where(x => x.BookId == book.BookId).ToList();
-            //foreach (var item in newBookAuthor)
-            //{
-            //    _unitOfWork.BookAuthors.Delete(item);
-            //}
-            //newBookAuthor.Clear();
-            //if (selectedItems != null)
-            //{
-            //    foreach (var author in _unitOfWork.Authors.GetAll().Where(x => selectedItems.Contains(x.AuthorId)))
-            //    {
-            //        bookAuthor = new DataAccessLayer.Context.LibraryDataAccessContext().BookAuthors.FirstOrDefault(x => x.BookId == book.BookId && x.AuthorId == author.AuthorId);
-            //        if (bookAuthor != null)
-            //        {
-            //            newBookAuthor.Add(bookAuthor);
-            //        }
-            //        else
-            //        {
-            //            newBookAuthor.Add(new BookAuthor() { BookId = book.BookId, AuthorId = author.AuthorId });
-            //        }
-            //    }
-            //}
-            //foreach (var item in newBookAuthor)
-            //{
-            //    _unitOfWork.BookAuthors.Insert(item);
-            //}
+            List<BookAuthor> oldBookAuthors = _unitOfWork.BookAuthors.GetAllByBookId(book.BookId);
+            var oldBookAuthorsWithRelation = oldBookAuthors.Where(x => x.AuthorId != 0).ToList();
+            var has = oldBookAuthorsWithRelation.Where(x => selectedItems.Contains(x.AuthorId)).ToList();
+            var nothas = oldBookAuthorsWithRelation.Where(x => !selectedItems.Contains(x.AuthorId)).ToList();
 
+            _unitOfWork.BookAuthors.Delete(nothas);
+
+            if (selectedItems != null)
+            {
+                List<Author> authors = _unitOfWork.Authors.GetAll().Where(x => selectedItems.Contains(x.AuthorId)).ToList();
+                List<BookAuthor> currentBookAuthors = new List<BookAuthor>();
+
+                foreach (var newAuthor in authors)
+                {
+                    if (has.FirstOrDefault(x => x.AuthorId == newAuthor.AuthorId) == null)
+                    {
+                        currentBookAuthors.Add(new BookAuthor() { Book = bookModel, BookId = bookModel.BookId, Author = newAuthor, AuthorId = newAuthor.AuthorId });
+                    }
+                }
+
+                _unitOfWork.BookAuthors.Insert(currentBookAuthors);
+            }
         }
 
         public void SaveToJSON(int id)

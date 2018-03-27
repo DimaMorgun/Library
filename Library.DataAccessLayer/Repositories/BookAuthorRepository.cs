@@ -1,79 +1,107 @@
 ﻿using Library.DataAccessLayer.Connection;
-using Library.DataAccessLayer.Context;
 using Library.DataAccessLayer.Interfaces;
 using Library.EntityLayer.Models;
 
 using Dapper.Contrib.Extensions;
+using Dapper;
 
-using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using Dapper;
-using Library.ViewModelLayer.ViewModels;
 
 namespace Library.DataAccessLayer.Repositories
 {
     public class BookAuthorRepository : IRepository<BookAuthor>
     {
-        private SqlConnection _connection;
-        private LibraryDataAccessContext _context;
-
         public BookAuthorRepository()
         {
-            _connection = new SqlConnection(CurrentConnection.ConnectionString);
-            _context = new LibraryDataAccessContext();
         }
 
         public void Insert(BookAuthor item)
         {
-            _connection.Insert(item);
+            using (SqlConnection connection = new SqlConnection(CurrentConnection.ConnectionString))
+            {
+                connection.Insert(item);
+            }
         }
 
         public void Insert(List<BookAuthor> items)
         {
-            _connection.Insert(items);
+            using (SqlConnection connection = new SqlConnection(CurrentConnection.ConnectionString))
+            {
+                connection.Insert(items);
+            }
         }
 
         public void Delete(BookAuthor item)
         {
-            _connection.Delete(item);
+            using (SqlConnection connection = new SqlConnection(CurrentConnection.ConnectionString))
+            {
+                connection.Delete(item);
+            }
+        }
+
+        public void Delete(List<BookAuthor> items)
+        {
+            using (SqlConnection connection = new SqlConnection(CurrentConnection.ConnectionString))
+            {
+                connection.Delete(items);
+            }
         }
 
         public BookAuthor Get(int id)
         {
-            throw new NotImplementedException();
+            BookAuthor bookAuthor;
+            using (SqlConnection connection = new SqlConnection(CurrentConnection.ConnectionString))
+            {
+                bookAuthor = connection.Get<BookAuthor>(id);
+            }
+            return bookAuthor;
         }
 
         public List<BookAuthor> GetAllByBookId(int id)
         {
-            string query = $"SELECT * FROM BookAuthors LEFT JOIN Books on Books.BookId = BookAuthors.BookId LEFT JOIN Authors on Authors.AuthorId = BookAuthors.AuthorId WHERE Books.BookId = {id};";
-            using (_connection)
+            string query = $"SELECT BookAuthors.*, Books.*, Authors.* FROM Books LEFT JOIN BookAuthors on BookAuthors.BookId = Books.BookId LEFT JOIN Authors on Authors.AuthorId = BookAuthors.AuthorId WHERE Books.BookId = {id};";
+            List<BookAuthor> result;
+            using (SqlConnection connection = new SqlConnection(CurrentConnection.ConnectionString))
             {
-                var result = _connection.Query<BookAuthor, Book, Author, BookAuthor>(query, (ba, book, author) =>
+                result = connection.Query<BookAuthor, Book, Author, BookAuthor>(query, (ba, book, author) =>
                 {
                     ba.Book = book;
+                    ba.BookId = book.BookId;
                     ba.Author = author;
+                    ba.AuthorId = author != null ? author.AuthorId : 0;
                     return ba;
-                }, splitOn: "AuthorId");
-                return result.ToList();
+                }, splitOn: "AuthorId").ToList();
+
             }
+            return result.ToList();
         }
 
         public List<BookAuthor> GetAll()
         {
-            var items = _connection.GetAll<BookAuthor>();
-            return items.ToList();
+            List<BookAuthor> booksAuthors;
+            using (SqlConnection connection = new SqlConnection(CurrentConnection.ConnectionString))
+            {
+                booksAuthors = connection.GetAll<BookAuthor>().ToList();
+            }
+            return booksAuthors.ToList();
         }
 
         public void Update(BookAuthor item)
         {
-            _connection.Update(item);
+            using (SqlConnection connection = new SqlConnection(CurrentConnection.ConnectionString))
+            {
+                connection.Update(item);
+            }
         }
 
         public void Update(List<BookAuthor> items)
         {
-            _connection.Update(items);
+            using (SqlConnection connection = new SqlConnection(CurrentConnection.ConnectionString))
+            {
+                connection.Update(items);
+            }
         }
     }
 }

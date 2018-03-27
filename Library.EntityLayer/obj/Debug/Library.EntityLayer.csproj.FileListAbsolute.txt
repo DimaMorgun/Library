@@ -16,3 +16,4 @@ C:\Users\Anuitex-52\source\repos\Library\Library.EntityLayer\bin\Debug\Dapper.Co
 C:\Users\Anuitex-52\source\repos\Library\Library.EntityLayer\bin\Debug\Dapper.dll
 C:\Users\Anuitex-52\source\repos\Library\Library.EntityLayer\bin\Debug\Dapper.xml
 C:\Users\Anuitex-52\source\repos\Library\Library.EntityLayer\bin\Debug\Dapper.Contrib.xml
+C:\Users\Anuitex-52\source\repos\Library\Library.EntityLayer\obj\Debug\Library.EntityLayer.csprojResolveAssemblyReference.cache
