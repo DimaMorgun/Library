@@ -72,3 +72,4 @@ C:\Users\Anuitex-52\source\repos\Library\Library.DataAccessLayer\obj\Debug\Libra
 C:\Users\Anuitex-52\source\repos\Library\Library.DataAccessLayer\obj\Debug\Library.DataAccessLayer.Migrations.CommentinBookAuthormodel.resources
 C:\Users\Anuitex-52\source\repos\Library\Library.DataAccessLayer\obj\Debug\Library.DataAccessLayer.Migrations.ChangetooldrelationsinBooktoAuthors.resources
 C:\Users\Anuitex-52\source\repos\Library\Library.DataAccessLayer\obj\Debug\Library.DataAccessLayer.Migrations.Discardlastchanges.resources
+C:\Users\Anuitex-52\source\repos\Library\Library.DataAccessLayer\obj\Debug\Library.DataAccessLayer.Migrations._4thtaskwithpublicationhouses.resources

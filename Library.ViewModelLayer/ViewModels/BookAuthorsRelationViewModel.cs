@@ -1,6 +1,6 @@
 ﻿namespace Library.ViewModelLayer.ViewModels
 {
-    public class BookAuthorsTableViewModel
+    public class BookAuthorsRelationViewModel
     {
         public int BookAuthorId { get; set; }
         public int BookId { get; set; }

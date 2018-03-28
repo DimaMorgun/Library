@@ -27,7 +27,20 @@
         <dd>
             @foreach (var author in Model.Authors)
             {
-                <p>@Html.Label(author.Name)</p>
+                @Html.Label(author.Name)
+                <br />
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PublicationHouses)
+        </dt>
+
+        <dd>
+            @foreach (var publicationHouse in Model.PublicationHouses)
+            {
+                @Html.Label(publicationHouse.Name)
+                <br />
             }
         </dd>
 

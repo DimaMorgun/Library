@@ -48,5 +48,15 @@ namespace Library.DataAccessLayer.Repositories
         {
             _connection.Delete(item);
         }
+
+        public void Delete(List<TEntity> items)
+        {
+            _connection.Delete(items);
+        }
+
+        public virtual List<TEntity> GetAllById<TModel>(int id) where TModel : class
+        {
+            return GetAll();
+        }
     }
 }

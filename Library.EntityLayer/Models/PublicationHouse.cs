@@ -1,7 +1,5 @@
 ﻿using Dapper.Contrib.Extensions;
 
-using System.Collections.Generic;
-
 namespace Library.EntityLayer.Models
 {
     public class PublicationHouse

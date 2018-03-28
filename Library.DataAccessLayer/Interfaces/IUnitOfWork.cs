@@ -10,8 +10,9 @@ namespace Library.DataAccessLayer.Interfaces
         IGenericRepository<Book> Books { get; }
         IGenericRepository<Author> Authors { get; }
         BookAuthorRepository BookAuthors { get; }
+        IGenericRepository<PublicationHouse> PublicationHouses { get; }
+        BookPublicationHouseRepository BookPublicationHouses { get; }
         IGenericRepository<Magazine> Magazines { get; }
         IGenericRepository<Brochure> Brochures { get; }
-        IGenericRepository<PublicationHouse> PublicationHousees { get; }
     }
 }

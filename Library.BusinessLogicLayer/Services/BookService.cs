@@ -20,25 +20,156 @@ namespace Library.BusinessLogicLayer.Services
             _unitOfWork = new UnitOfWork();
         }
 
-        public void Insert(BookViewModel book, int[] selectedItems)
+        public void Insert(BookViewModel book, int[] selectedAuthors, int[] selectedPublicationHouses)
         {
-            Book bookModel = Mapper.Map<BookViewModel, Book>(book);
+            var bookModel = Mapper.Map<BookViewModel, Book>(book);
             var bookAuthorsModel = new List<BookAuthor>();
+            var bookPublicationHousesModel = new List<BookPublicationHouse>();
 
             var bookId = _unitOfWork.Books.Insert(bookModel);
 
-            if (selectedItems != null)
+            if (selectedAuthors != null)
             {
-                List<Author> selectedAuthors = _unitOfWork.Authors.GetAll().Where(x => selectedItems.Contains(x.AuthorId)).ToList();
-                foreach (var author in selectedAuthors)
+                foreach (var authorId in selectedAuthors)
                 {
-                    bookAuthorsModel.Add(new BookAuthor() { BookId = bookId, AuthorId = author.AuthorId });
+                    bookAuthorsModel.Add(new BookAuthor() { BookId = bookId, AuthorId = authorId });
+                }
+            }
+            if (selectedPublicationHouses != null)
+            {
+                foreach (var publicationHouseId in selectedPublicationHouses)
+                {
+                    bookPublicationHousesModel.Add(new BookPublicationHouse() { BookId = bookId, PublicationHouseId = publicationHouseId });
                 }
             }
 
-            foreach (var item in bookAuthorsModel)
+            _unitOfWork.BookAuthors.Insert(bookAuthorsModel);
+            _unitOfWork.BookPublicationHouses.Insert(bookPublicationHousesModel);
+        }
+
+        public BookViewModel Get(int id)
+        {
+            List<BookAuthor> bookAuthors = _unitOfWork.BookAuthors.GetAllById<Book>(id);
+            List<BookPublicationHouse> bookPublicationHouses = _unitOfWork.BookPublicationHouses.GetAllById<Book>(id);
+
+            var book = new Book() { BookId = bookAuthors.ElementAt(0).Book.BookId, Name = bookAuthors.ElementAt(0).Book.Name, YearOfPublishing = bookAuthors.ElementAt(0).Book.YearOfPublishing };
+            var authors = new List<Author>();
+            var publicationHouses = new List<PublicationHouse>();
+            foreach (var author in bookAuthors)
             {
-                _unitOfWork.BookAuthors.Insert(item);
+                if (author.Author != null)
+                {
+                    authors.Add(author.Author);
+                }
+            }
+            foreach (var publicationHouse in bookPublicationHouses)
+            {
+                if (publicationHouse.PublicationHouse != null)
+                {
+                    publicationHouses.Add(publicationHouse.PublicationHouse);
+                }
+            }
+            var bookViewModel = Mapper.Map<Book, BookViewModel>(book);
+            bookViewModel.Authors = Mapper.Map<List<Author>, List<AuthorViewModel>>(authors);
+            bookViewModel.PublicationHouses = Mapper.Map<List<PublicationHouse>, List<PublicationHouseViewModel>>(publicationHouses);
+
+            return bookViewModel;
+        }
+
+        public List<BookViewModel> GetAll()
+        {
+            List<Book> allBooksModel = _unitOfWork.Books.GetAll();
+
+            var allBooksViewModel = Mapper.Map<List<Book>, List<BookViewModel>>(allBooksModel);
+
+            return allBooksViewModel;
+        }
+
+        public BookAuthorsPublicationHousesViewModel GetBookAuthorsPublicationHouses()
+        {
+            List<Author> allAuthors = _unitOfWork.Authors.GetAll();
+            List<PublicationHouse> allPublicationHouses = _unitOfWork.PublicationHouses.GetAll();
+
+            var authorViewModel = Mapper.Map<List<Author>, List<AuthorViewModel>>(allAuthors);
+            var publicationHousesViewModel = Mapper.Map<List<PublicationHouse>, List<PublicationHouseViewModel>>(allPublicationHouses);
+
+            var bookAuthorsViewModel = new BookAuthorsPublicationHousesViewModel
+            {
+                Authors = authorViewModel,
+                PublicationHouses = publicationHousesViewModel
+            };
+
+            return bookAuthorsViewModel;
+        }
+
+        public BookAuthorsPublicationHousesViewModel GetBookAuthorsPublicationHouses(int id)
+        {
+            Book bookModel = _unitOfWork.Books.Get(id);
+            List<BookAuthor> allBookAuthors = _unitOfWork.BookAuthors.GetAll();
+            List<Author> allAuthors = _unitOfWork.Authors.GetAll();
+            List<BookPublicationHouse> allBookPublicationHouses = _unitOfWork.BookPublicationHouses.GetAll();
+            List<PublicationHouse> allPublicationHouses = _unitOfWork.PublicationHouses.GetAll();
+
+            var bookViewModel = Mapper.Map<Book, BookViewModel>(bookModel);
+            var bookAuthorsRelationViewModel = Mapper.Map<List<BookAuthor>, List<BookAuthorsRelationViewModel>>(allBookAuthors);
+            var authorViewModel = Mapper.Map<List<Author>, List<AuthorViewModel>>(allAuthors);
+            var bookPublicationHousesRelationViewModel = Mapper.Map<List<BookPublicationHouse>, List<BookPublicationHousesRelationViewModel>>(allBookPublicationHouses);
+            var publicationHouseViewModel = Mapper.Map<List<PublicationHouse>, List<PublicationHouseViewModel>>(allPublicationHouses);
+
+            var bookAuthorsViewModel = new BookAuthorsPublicationHousesViewModel
+            {
+                Book = bookViewModel,
+                BookAuthors = bookAuthorsRelationViewModel,
+                Authors = authorViewModel,
+                BookPublicationHouses = bookPublicationHousesRelationViewModel,
+                PublicationHouses = publicationHouseViewModel
+            };
+            return bookAuthorsViewModel;
+        }
+
+        public void Update(BookViewModel book, int[] selectedAuthors, int[] selectedPublicationHouses)
+        {
+            Book bookModel = _unitOfWork.Books.Get(book.BookId);
+            bookModel.Name = book.Name;
+            bookModel.YearOfPublishing = book.YearOfPublishing;
+            _unitOfWork.Books.Update(bookModel);
+
+            List<BookAuthor> oldBookAuthors = _unitOfWork.BookAuthors.GetAllById<Book>(book.BookId);
+            var oldBookAuthorsWithRelation = oldBookAuthors.Where(x => x.AuthorId != 0).ToList();
+            var AuthorsHas = oldBookAuthorsWithRelation.Where(x => selectedAuthors.Contains(x.AuthorId)).ToList();
+            var AuthorsNothas = oldBookAuthorsWithRelation.Where(x => !selectedAuthors.Contains(x.AuthorId)).ToList();
+            _unitOfWork.BookAuthors.Delete(AuthorsNothas);
+            if (selectedAuthors != null)
+            {
+                List<BookAuthor> currentBookAuthors = new List<BookAuthor>();
+
+                foreach (var newAuthorId in selectedAuthors)
+                {
+                    if (AuthorsHas.FirstOrDefault(x => x.AuthorId == newAuthorId) == null)
+                    {
+                        currentBookAuthors.Add(new BookAuthor() { BookId = bookModel.BookId, AuthorId = newAuthorId });
+                    }
+                }
+                _unitOfWork.BookAuthors.Insert(currentBookAuthors);
+            }
+
+            List<BookPublicationHouse> oldPublicationHouses = _unitOfWork.BookPublicationHouses.GetAllById<Book>(book.BookId);
+            var oldBookPublicationHousesWithRelation = oldPublicationHouses.Where(x => x.PublicationHouseId != 0).ToList();
+            var PublicationHousesHas = oldBookPublicationHousesWithRelation.Where(x => selectedPublicationHouses.Contains(x.PublicationHouseId)).ToList();
+            var PublicationHousesNothas = oldBookPublicationHousesWithRelation.Where(x => !selectedPublicationHouses.Contains(x.PublicationHouseId)).ToList();
+            _unitOfWork.BookPublicationHouses.Delete(PublicationHousesNothas);
+            if (selectedPublicationHouses != null)
+            {
+                List<BookPublicationHouse> currentBookPublicationHouses = new List<BookPublicationHouse>();
+
+                foreach (var newPublicationHouseId in selectedPublicationHouses)
+                {
+                    if (PublicationHousesHas.FirstOrDefault(x => x.PublicationHouseId == newPublicationHouseId) == null)
+                    {
+                        currentBookPublicationHouses.Add(new BookPublicationHouse() { BookId = bookModel.BookId, PublicationHouseId = newPublicationHouseId });
+                    }
+                }
+                _unitOfWork.BookPublicationHouses.Insert(currentBookPublicationHouses);
             }
         }
 
@@ -46,100 +177,6 @@ namespace Library.BusinessLogicLayer.Services
         {
             var bookModel = _unitOfWork.Books.Get(id);
             _unitOfWork.Books.Delete(bookModel);
-        }
-
-        public BookViewModel Get(int id)
-        {
-            List<BookAuthor> bookAuthors = _unitOfWork.BookAuthors.GetAllByBookId(id);
-
-            var book = new Book() { BookId = bookAuthors.ElementAt(0).Book.BookId, Name = bookAuthors.ElementAt(0).Book.Name, YearOfPublishing = bookAuthors.ElementAt(0).Book.YearOfPublishing };
-            List<Author> authors = new List<Author>();
-            foreach (var item in bookAuthors)
-            {
-                if (item.Author != null)
-                {
-                    authors.Add(item.Author);
-                }
-            }
-
-            BookViewModel resultBook = Mapper.Map<Book, BookViewModel>(book);
-            resultBook.Authors = Mapper.Map<List<Author>, List<AuthorViewModel>>(authors);
-
-            return resultBook;
-        }
-
-        public List<BookViewModel> GetAll()
-        {
-            List<Book> allBooksModel = _unitOfWork.Books.GetAll();
-
-            List<BookViewModel> allBooksViewModel = Mapper.Map<List<Book>, List<BookViewModel>>(allBooksModel);
-
-            return allBooksViewModel;
-        }
-
-        public BookAuthorsViewModel GetBookAuthors()
-        {
-            List<Author> allAuthors = _unitOfWork.Authors.GetAll();
-
-            List<AuthorViewModel> authorViewModel = Mapper.Map<List<Author>, List<AuthorViewModel>>(allAuthors);
-
-            var bookAuthorsViewModel = new BookAuthorsViewModel
-            {
-                Authors = authorViewModel
-            };
-
-            return bookAuthorsViewModel;
-        }
-
-        public BookAuthorsViewModel GetBookAuthors(int id)
-        {
-            Book bookModel = _unitOfWork.Books.Get(id);
-            List<Author> allAuthors = _unitOfWork.Authors.GetAll();
-            List<BookAuthor> allBookAuthors = _unitOfWork.BookAuthors.GetAll();
-
-            var bookViewModel = Mapper.Map<Book, BookViewModel>(bookModel);
-            var authorViewModel = Mapper.Map<List<Author>, List<AuthorViewModel>>(allAuthors);
-            var bookAuthorsTableViewModel = Mapper.Map<List<BookAuthor>, List<BookAuthorsTableViewModel>>(allBookAuthors);
-
-            var bookAuthorsViewModel = new BookAuthorsViewModel
-            {
-                Book = bookViewModel,
-                Authors = authorViewModel,
-                BookAuthors = bookAuthorsTableViewModel
-            };
-
-            return bookAuthorsViewModel;
-        }
-
-        public void Update(BookViewModel book, int[] selectedItems)
-        {
-            Book bookModel = _unitOfWork.Books.Get(book.BookId);
-            bookModel.Name = book.Name;
-            bookModel.YearOfPublishing = book.YearOfPublishing;
-            _unitOfWork.Books.Update(bookModel);
-
-            List<BookAuthor> oldBookAuthors = _unitOfWork.BookAuthors.GetAllByBookId(book.BookId);
-            var oldBookAuthorsWithRelation = oldBookAuthors.Where(x => x.AuthorId != 0).ToList();
-            var has = oldBookAuthorsWithRelation.Where(x => selectedItems.Contains(x.AuthorId)).ToList();
-            var nothas = oldBookAuthorsWithRelation.Where(x => !selectedItems.Contains(x.AuthorId)).ToList();
-
-            _unitOfWork.BookAuthors.Delete(nothas);
-
-            if (selectedItems != null)
-            {
-                List<Author> authors = _unitOfWork.Authors.GetAll().Where(x => selectedItems.Contains(x.AuthorId)).ToList();
-                List<BookAuthor> currentBookAuthors = new List<BookAuthor>();
-
-                foreach (var newAuthor in authors)
-                {
-                    if (has.FirstOrDefault(x => x.AuthorId == newAuthor.AuthorId) == null)
-                    {
-                        currentBookAuthors.Add(new BookAuthor() { Book = bookModel, BookId = bookModel.BookId, Author = newAuthor, AuthorId = newAuthor.AuthorId });
-                    }
-                }
-
-                _unitOfWork.BookAuthors.Insert(currentBookAuthors);
-            }
         }
 
         public void SaveToJSON(int id)

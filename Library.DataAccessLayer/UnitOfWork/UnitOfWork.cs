@@ -13,9 +13,10 @@ namespace Library.DataAccessLayer.UnitOfWork
         private GenericRepository<Book> _bookRepository;
         private GenericRepository<Author> _authorRepository;
         private BookAuthorRepository _bookAuthorRepository;
+        private GenericRepository<PublicationHouse> _publicationHouseRepository;
+        private BookPublicationHouseRepository _bookPublicationHouseRepository;
         private GenericRepository<Magazine> _magazineRepository;
         private GenericRepository<Brochure> _brochureRepository;
-        private GenericRepository<PublicationHouse> _publicationHouseRepository;
 
         public UnitOfWork()
         {
@@ -49,6 +50,24 @@ namespace Library.DataAccessLayer.UnitOfWork
                 return _bookAuthorRepository;
             }
         }
+        public IGenericRepository<PublicationHouse> PublicationHouses
+        {
+            get
+            {
+                if (_publicationHouseRepository == null)
+                    _publicationHouseRepository = new GenericRepository<PublicationHouse>();
+                return _publicationHouseRepository;
+            }
+        }
+        public BookPublicationHouseRepository BookPublicationHouses
+        {
+            get
+            {
+                if (_bookPublicationHouseRepository == null)
+                    _bookPublicationHouseRepository = new BookPublicationHouseRepository();
+                return _bookPublicationHouseRepository;
+            }
+        }
         public IGenericRepository<Magazine> Magazines
         {
             get
@@ -65,15 +84,6 @@ namespace Library.DataAccessLayer.UnitOfWork
                 if (_brochureRepository == null)
                     _brochureRepository = new GenericRepository<Brochure>();
                 return _brochureRepository;
-            }
-        }
-        public IGenericRepository<PublicationHouse> PublicationHousees
-        {
-            get
-            {
-                if (_publicationHouseRepository == null)
-                    _publicationHouseRepository = new GenericRepository<PublicationHouse>();
-                return _publicationHouseRepository;
             }
         }
 

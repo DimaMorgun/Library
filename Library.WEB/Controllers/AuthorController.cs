@@ -32,9 +32,9 @@ namespace Library.WEB.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(AuthorViewModel author, int[] selectedItems)
+        public ActionResult Create(AuthorViewModel author, int[] selectedBooks)
         {
-            _authorService.Insert(author, selectedItems);
+            _authorService.Insert(author, selectedBooks);
 
             return RedirectToAction("Index");
         }
@@ -56,9 +56,9 @@ namespace Library.WEB.Controllers
         }
 
         [HttpPost]
-        public ActionResult Update(AuthorViewModel author, int[] selectedItems)
+        public ActionResult Update(AuthorViewModel author, int[] selectedBooks)
         {
-            _authorService.Update(author, selectedItems);
+            _authorService.Update(author, selectedBooks);
 
             return RedirectToAction("Index");
         }

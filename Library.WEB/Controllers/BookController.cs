@@ -26,15 +26,15 @@ namespace Library.WEB.Controllers
         [HttpGet]
         public ActionResult CreateView()
         {
-            BookAuthorsViewModel bookAuthors = _bookService.GetBookAuthors();
+            BookAuthorsPublicationHousesViewModel bookAuthors = _bookService.GetBookAuthorsPublicationHouses();
 
             return View(bookAuthors);
         }
 
         [HttpPost]
-        public ActionResult Create(BookViewModel book, int[] selectedItems)
+        public ActionResult Create(BookViewModel book, int[] selectedAuthors, int[] selectedPublicationHouses)
         {
-            _bookService.Insert(book, selectedItems);
+            _bookService.Insert(book, selectedAuthors, selectedPublicationHouses);
 
             return RedirectToAction("Index");
         }
@@ -50,15 +50,15 @@ namespace Library.WEB.Controllers
         [HttpGet]
         public ActionResult UpdateView(int id)
         {
-            BookAuthorsViewModel bookAuthors = _bookService.GetBookAuthors(id);
+            BookAuthorsPublicationHousesViewModel bookAuthors = _bookService.GetBookAuthorsPublicationHouses(id);
 
             return View(bookAuthors);
         }
 
         [HttpPost]
-        public ActionResult Update(BookViewModel book, int[] selectedItems)
+        public ActionResult Update(BookViewModel book, int[] selectedAuthors, int[] selectedPublicationHouses)
         {
-            _bookService.Update(book, selectedItems);
+            _bookService.Update(book, selectedAuthors, selectedPublicationHouses);
 
             return RedirectToAction("Index");
         }

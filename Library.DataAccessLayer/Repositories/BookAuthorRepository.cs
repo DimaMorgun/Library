@@ -1,8 +1,6 @@
 ﻿using Library.DataAccessLayer.Connection;
-using Library.DataAccessLayer.Interfaces;
 using Library.EntityLayer.Models;
 
-using Dapper.Contrib.Extensions;
 using Dapper;
 
 using System.Collections.Generic;
@@ -11,61 +9,18 @@ using System.Linq;
 
 namespace Library.DataAccessLayer.Repositories
 {
-    public class BookAuthorRepository : IRepository<BookAuthor>
+    public class BookAuthorRepository : GenericRepository<BookAuthor>
     {
-        public BookAuthorRepository()
+        // TODO: Exception here!
+        public override List<BookAuthor> GetAllById<TModel>(int id)
         {
-        }
-
-        public void Insert(BookAuthor item)
-        {
+            var genericType = typeof(TModel);
+            var genericTypeName = genericType.Name;
+            string query = $"SELECT BookAuthors.*, Books.*, Authors.* FROM Books LEFT JOIN BookAuthors on BookAuthors.BookId = Books.BookId LEFT JOIN Authors on Authors.AuthorId = BookAuthors.AuthorId WHERE {genericTypeName}s.{genericTypeName}Id = {id};";
+            List<BookAuthor> bookAuthors;
             using (SqlConnection connection = new SqlConnection(CurrentConnection.ConnectionString))
             {
-                connection.Insert(item);
-            }
-        }
-
-        public void Insert(List<BookAuthor> items)
-        {
-            using (SqlConnection connection = new SqlConnection(CurrentConnection.ConnectionString))
-            {
-                connection.Insert(items);
-            }
-        }
-
-        public void Delete(BookAuthor item)
-        {
-            using (SqlConnection connection = new SqlConnection(CurrentConnection.ConnectionString))
-            {
-                connection.Delete(item);
-            }
-        }
-
-        public void Delete(List<BookAuthor> items)
-        {
-            using (SqlConnection connection = new SqlConnection(CurrentConnection.ConnectionString))
-            {
-                connection.Delete(items);
-            }
-        }
-
-        public BookAuthor Get(int id)
-        {
-            BookAuthor bookAuthor;
-            using (SqlConnection connection = new SqlConnection(CurrentConnection.ConnectionString))
-            {
-                bookAuthor = connection.Get<BookAuthor>(id);
-            }
-            return bookAuthor;
-        }
-
-        public List<BookAuthor> GetAllByBookId(int id)
-        {
-            string query = $"SELECT BookAuthors.*, Books.*, Authors.* FROM Books LEFT JOIN BookAuthors on BookAuthors.BookId = Books.BookId LEFT JOIN Authors on Authors.AuthorId = BookAuthors.AuthorId WHERE Books.BookId = {id};";
-            List<BookAuthor> result;
-            using (SqlConnection connection = new SqlConnection(CurrentConnection.ConnectionString))
-            {
-                result = connection.Query<BookAuthor, Book, Author, BookAuthor>(query, (ba, book, author) =>
+                bookAuthors = connection.Query<BookAuthor, Book, Author, BookAuthor>(query, (ba, book, author) =>
                 {
                     ba.Book = book;
                     ba.BookId = book.BookId;
@@ -73,35 +28,8 @@ namespace Library.DataAccessLayer.Repositories
                     ba.AuthorId = author != null ? author.AuthorId : 0;
                     return ba;
                 }, splitOn: "AuthorId").ToList();
-
             }
-            return result.ToList();
-        }
-
-        public List<BookAuthor> GetAll()
-        {
-            List<BookAuthor> booksAuthors;
-            using (SqlConnection connection = new SqlConnection(CurrentConnection.ConnectionString))
-            {
-                booksAuthors = connection.GetAll<BookAuthor>().ToList();
-            }
-            return booksAuthors.ToList();
-        }
-
-        public void Update(BookAuthor item)
-        {
-            using (SqlConnection connection = new SqlConnection(CurrentConnection.ConnectionString))
-            {
-                connection.Update(item);
-            }
-        }
-
-        public void Update(List<BookAuthor> items)
-        {
-            using (SqlConnection connection = new SqlConnection(CurrentConnection.ConnectionString))
-            {
-                connection.Update(items);
-            }
+            return bookAuthors.ToList();
         }
     }
 }

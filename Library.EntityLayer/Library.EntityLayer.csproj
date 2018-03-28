@@ -51,6 +51,7 @@
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\BookAuthor.cs" />
+    <Compile Include="Models\BookPublicationHouse.cs" />
     <Compile Include="Models\Brochure.cs" />
     <Compile Include="Models\Magazine.cs" />
     <Compile Include="Models\PublicationHouse.cs" />
