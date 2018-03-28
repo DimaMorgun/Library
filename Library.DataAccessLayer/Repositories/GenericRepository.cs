@@ -54,7 +54,7 @@ namespace Library.DataAccessLayer.Repositories
             _connection.Delete(items);
         }
 
-        public virtual List<TEntity> GetAllById<TModel>(int id) where TModel : class
+        public virtual List<TEntity> GetAllById<TModel>(int id)
         {
             return GetAll();
         }

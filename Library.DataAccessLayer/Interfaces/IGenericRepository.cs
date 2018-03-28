@@ -12,6 +12,6 @@ namespace Library.DataAccessLayer.Interfaces
         void Update(List<TEntity> items);
         void Delete(TEntity item);
         void Delete(List<TEntity> items);
-        List<TEntity> GetAllById<TModel>(int id) where TModel : class;
+        List<TEntity> GetAllById<TModel>(int id);
     }
 }

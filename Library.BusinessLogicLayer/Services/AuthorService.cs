@@ -42,7 +42,7 @@ namespace Library.BusinessLogicLayer.Services
         {
             List<BookAuthor> bookAuthors = _unitOfWork.BookAuthors.GetAllById<Author>(id);
 
-            var author = new Author() { Name = bookAuthors.ElementAt(0).Author.Name, Birthday = bookAuthors.ElementAt(0).Author.Birthday, Deathday = bookAuthors.ElementAt(0).Author.Deathday };
+            var author = new Author() { AuthorId = bookAuthors.ElementAt(0).Author.AuthorId, Name = bookAuthors.ElementAt(0).Author.Name, Birthday = bookAuthors.ElementAt(0).Author.Birthday, Deathday = bookAuthors.ElementAt(0).Author.Deathday };
             var books = new List<Book>();
             foreach (var book in bookAuthors)
             {
@@ -106,9 +106,11 @@ namespace Library.BusinessLogicLayer.Services
             authorModel.Name = author.Name;
             authorModel.Birthday = author.Birthday;
             authorModel.Deathday = author.Deathday;
+            _unitOfWork.Authors.Update(authorModel);
 
             List<BookAuthor> oldBookAuthors = _unitOfWork.BookAuthors.GetAllById<Author>(author.AuthorId);
             var oldBookAuthorsWithRelation = oldBookAuthors.Where(x => x.BookId != 0).ToList();
+            selectedBooks = selectedBooks == null ? new int[0] : selectedBooks;
             var BooksHas = oldBookAuthorsWithRelation.Where(x => selectedBooks.Contains(x.BookId)).ToList();
             var BooksNothas = oldBookAuthorsWithRelation.Where(x => !selectedBooks.Contains(x.BookId)).ToList();
             _unitOfWork.BookAuthors.Delete(BooksNothas);
@@ -120,7 +122,7 @@ namespace Library.BusinessLogicLayer.Services
                 {
                     if (BooksHas.FirstOrDefault(x => x.BookId == newBookId) == null)
                     {
-                        currentBookAuthors.Add(new BookAuthor() { BookId = authorModel.AuthorId, AuthorId = newBookId });
+                        currentBookAuthors.Add(new BookAuthor() { BookId = newBookId, AuthorId = authorModel.AuthorId });
                     }
                 }
                 _unitOfWork.BookAuthors.Insert(currentBookAuthors);

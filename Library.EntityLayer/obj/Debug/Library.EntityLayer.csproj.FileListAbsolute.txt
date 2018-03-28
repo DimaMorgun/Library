@@ -16,3 +16,12 @@ C:\Users\Anuitex-52\source\repos\Library\Library.EntityLayer\bin\Debug\Dapper.Co
 C:\Users\Anuitex-52\source\repos\Library\Library.EntityLayer\bin\Debug\Dapper.dll
 C:\Users\Anuitex-52\source\repos\Library\Library.EntityLayer\bin\Debug\Dapper.xml
 C:\Users\Anuitex-52\source\repos\Library\Library.EntityLayer\bin\Debug\Dapper.Contrib.xml
+C:\Users\Public\Documents\repository\Library\Library.EntityLayer\bin\Debug\Library.EntityLayer.dll
+C:\Users\Public\Documents\repository\Library\Library.EntityLayer\bin\Debug\Library.EntityLayer.pdb
+C:\Users\Public\Documents\repository\Library\Library.EntityLayer\bin\Debug\Dapper.Contrib.dll
+C:\Users\Public\Documents\repository\Library\Library.EntityLayer\bin\Debug\Dapper.dll
+C:\Users\Public\Documents\repository\Library\Library.EntityLayer\bin\Debug\Dapper.xml
+C:\Users\Public\Documents\repository\Library\Library.EntityLayer\bin\Debug\Dapper.Contrib.xml
+C:\Users\Public\Documents\repository\Library\Library.EntityLayer\obj\Debug\Library.EntityLayer.csproj.CoreCompileInputs.cache
+C:\Users\Public\Documents\repository\Library\Library.EntityLayer\obj\Debug\Library.EntityLayer.dll
+C:\Users\Public\Documents\repository\Library\Library.EntityLayer\obj\Debug\Library.EntityLayer.pdb

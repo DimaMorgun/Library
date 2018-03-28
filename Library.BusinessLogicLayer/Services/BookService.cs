@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System;
 
 namespace Library.BusinessLogicLayer.Services
 {
@@ -127,15 +128,17 @@ namespace Library.BusinessLogicLayer.Services
             return bookAuthorsViewModel;
         }
 
-        public void Update(BookViewModel book, int[] selectedAuthors, int[] selectedPublicationHouses)
+        public void Update(BookViewModel book, int[] selectedAuthors, params int[] selectedPublicationHouses)
         {
             Book bookModel = _unitOfWork.Books.Get(book.BookId);
             bookModel.Name = book.Name;
             bookModel.YearOfPublishing = book.YearOfPublishing;
             _unitOfWork.Books.Update(bookModel);
 
+            
             List<BookAuthor> oldBookAuthors = _unitOfWork.BookAuthors.GetAllById<Book>(book.BookId);
             var oldBookAuthorsWithRelation = oldBookAuthors.Where(x => x.AuthorId != 0).ToList();
+            selectedAuthors = selectedAuthors == null ? new int[0] : selectedAuthors;
             var AuthorsHas = oldBookAuthorsWithRelation.Where(x => selectedAuthors.Contains(x.AuthorId)).ToList();
             var AuthorsNothas = oldBookAuthorsWithRelation.Where(x => !selectedAuthors.Contains(x.AuthorId)).ToList();
             _unitOfWork.BookAuthors.Delete(AuthorsNothas);
@@ -155,6 +158,7 @@ namespace Library.BusinessLogicLayer.Services
 
             List<BookPublicationHouse> oldPublicationHouses = _unitOfWork.BookPublicationHouses.GetAllById<Book>(book.BookId);
             var oldBookPublicationHousesWithRelation = oldPublicationHouses.Where(x => x.PublicationHouseId != 0).ToList();
+            selectedPublicationHouses = selectedPublicationHouses == null ? new int[0] : selectedPublicationHouses;
             var PublicationHousesHas = oldBookPublicationHousesWithRelation.Where(x => selectedPublicationHouses.Contains(x.PublicationHouseId)).ToList();
             var PublicationHousesNothas = oldBookPublicationHousesWithRelation.Where(x => !selectedPublicationHouses.Contains(x.PublicationHouseId)).ToList();
             _unitOfWork.BookPublicationHouses.Delete(PublicationHousesNothas);

@@ -32,7 +32,7 @@
                 @foreach (var author in Model.Authors)
                 {
                     <div class="form-check">
-                        <input type="checkbox" class="form-check-input" name="selectedAuthors" value="@author.AuthorId" id="author @author.AuthorId"
+                        <input type="checkbox" class="form-check-input" name="selectedAuthors" value="@author.AuthorId" id="@author.AuthorId"
                                @(Model.BookAuthors.FirstOrDefault(x => x.AuthorId == author.AuthorId && x.BookId == Model.Book.BookId) != null ? "checked=\"checked\"" : "") />
                         <label class="form-check-label" for="@author.AuthorId">@author.Name</label>
                     </div>
@@ -46,7 +46,7 @@
                 @foreach (var publicationHouse in Model.PublicationHouses)
                 {
                     <div class="form-check">
-                        <input type="checkbox" class="form-check-input" name="selectedPublicationHouses" value="@publicationHouse.PublicationHouseId" id="publicationHouse @publicationHouse.PublicationHouseId"
+                        <input type="checkbox" class="form-check-input" name="selectedPublicationHouses" value="@publicationHouse.PublicationHouseId" id="@publicationHouse.PublicationHouseId"
                                @(Model.BookPublicationHouses.FirstOrDefault(x => x.PublicationHouseId == publicationHouse.PublicationHouseId && x.BookId == Model.Book.BookId) != null ? "checked=\"checked\"" : "") />
                         <label class="form-check-label" for="@publicationHouse.PublicationHouseId">@publicationHouse.Name</label>
                     </div>
