@@ -11,64 +11,40 @@ namespace Library.DataAccessLayer.Repositories
 {
     public class BookAuthorRepository : GenericRepository<BookAuthor>
     {
-        public override List<BookAuthor> GetAllById<TModel>(int id)
+        public List<BookAuthor> GetAllByBookId(int id)
         {
-            var genericType = typeof(TModel);
-            var genericTypeName = genericType.Name;
-            string query = string.Empty;
+            var query = $"SELECT BookAuthors.*, Books.*, Authors.* FROM Books LEFT JOIN BookAuthors on BookAuthors.BookId = Books.BookId LEFT JOIN Authors on Authors.AuthorId = BookAuthors.AuthorId WHERE Books.BookId = {id};";
             List<BookAuthor> bookAuthors = new List<BookAuthor>();
-            if (typeof(TModel) == typeof(Book))
+            using (SqlConnection connection = new SqlConnection(CurrentConnection.ConnectionString))
             {
-                query = $"SELECT BookAuthors.*, Books.*, Authors.* FROM Books LEFT JOIN BookAuthors on BookAuthors.BookId = Books.BookId LEFT JOIN Authors on Authors.AuthorId = BookAuthors.AuthorId WHERE Books.BookId = {id};";
-                using (SqlConnection connection = new SqlConnection(CurrentConnection.ConnectionString))
+                bookAuthors = connection.Query<BookAuthor, Book, Author, BookAuthor>(query, (ba, book, author) =>
                 {
-                    bookAuthors = connection.Query<BookAuthor, Book, Author, BookAuthor>(query, (ba, book, author) =>
-                    {
-                        ba.Book = book;
-                        ba.BookId = book.BookId;
-                        ba.Author = author;
-                        ba.AuthorId = author != null ? author.AuthorId : 0;
-                        return ba;
-                    }, splitOn: "AuthorId").ToList();
-                }
+                    ba.Book = book;
+                    ba.BookId = book.BookId;
+                    ba.Author = author;
+                    ba.AuthorId = author != null ? author.AuthorId : 0;
+                    return ba;
+                }, splitOn: "AuthorId").ToList();
             }
-            if (typeof(TModel) == typeof(Author))
-            {
-                query = $"SELECT BookAuthors.*, Authors.*, Books.* FROM Authors LEFT JOIN BookAuthors on BookAuthors.AuthorId = Authors.AuthorId LEFT JOIN Books on Books.BookId = BookAuthors.BookId WHERE Authors.AuthorId = {id};";
-                using (SqlConnection connection = new SqlConnection(CurrentConnection.ConnectionString))
-                {
-                    bookAuthors = connection.Query<BookAuthor, Author, Book, BookAuthor>(query, (ba, author, book) =>
-                    {
-                        ba.Book = book;
-                        ba.BookId = book != null ? book.BookId : 0;
-                        ba.Author = author;
-                        ba.AuthorId = author.AuthorId;
-                        return ba;
-                    }, splitOn: "BookId").ToList();
-                }
-            }
-
             return bookAuthors.ToList();
         }
 
-        //public override List<BookAuthor> GetAllById<TModel>(int id)
-        //{
-        //    var genericType = typeof(TModel);
-        //    var genericTypeName = genericType.Name;
-        //    string query = $"SELECT BookAuthors.*, Books.*, Authors.* FROM Books LEFT JOIN BookAuthors on BookAuthors.BookId = Books.BookId LEFT JOIN Authors on Authors.AuthorId = BookAuthors.AuthorId WHERE {genericTypeName}s.{genericTypeName}Id = {id};";
-        //    List<BookAuthor> bookAuthors;
-        //    using (SqlConnection connection = new SqlConnection(CurrentConnection.ConnectionString))
-        //    {
-        //        bookAuthors = connection.Query<BookAuthor, Book, Author, BookAuthor>(query, (ba, book, author) =>
-        //        {
-        //            ba.Book = book;
-        //            ba.BookId = book != null ? book.BookId : 0;
-        //            ba.Author = author;
-        //            ba.AuthorId = author != null ? author.AuthorId : 0;
-        //            return ba;
-        //        }, splitOn: "AuthorId").ToList();
-        //    }
-        //    return bookAuthors.ToList();
-        //}
+        public List<BookAuthor> GetAllByAuthorId(int id)
+        {
+            var query = $"SELECT BookAuthors.*, Authors.*, Books.* FROM Authors LEFT JOIN BookAuthors on BookAuthors.AuthorId = Authors.AuthorId LEFT JOIN Books on Books.BookId = BookAuthors.BookId WHERE Authors.AuthorId = {id};";
+            List<BookAuthor> bookAuthors = new List<BookAuthor>();
+            using (SqlConnection connection = new SqlConnection(CurrentConnection.ConnectionString))
+            {
+                bookAuthors = connection.Query<BookAuthor, Author, Book, BookAuthor>(query, (ba, author, book) =>
+                {
+                    ba.Book = book;
+                    ba.BookId = book != null ? book.BookId : 0;
+                    ba.Author = author;
+                    ba.AuthorId = author.AuthorId;
+                    return ba;
+                }, splitOn: "BookId").ToList();
+            }
+            return bookAuthors.ToList();
+        }
     }
 }

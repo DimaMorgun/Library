@@ -26,12 +26,6 @@ namespace Library.BusinessLogicLayer.Services
             _unitOfWork.Brochures.Insert(brochureModel);
         }
 
-        public void Delete(int id)
-        {
-            var brochureModel = _unitOfWork.Brochures.Get(id);
-            _unitOfWork.Brochures.Delete(brochureModel);
-        }
-
         public BrochureViewModel Get(int id)
         {
             Brochure brochureModel = _unitOfWork.Brochures.Get(id);
@@ -58,6 +52,12 @@ namespace Library.BusinessLogicLayer.Services
             brochureModel.TypeOfCover = Brochure.TypeOfCover;
 
             _unitOfWork.Brochures.Update(brochureModel);
+        }
+
+        public void Delete(int id)
+        {
+            var brochureModel = _unitOfWork.Brochures.Get(id);
+            _unitOfWork.Brochures.Delete(brochureModel);
         }
 
         public void SaveToJSON(int id)

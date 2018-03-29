@@ -26,12 +26,6 @@ namespace Library.BusinessLogicLayer.Services
             _unitOfWork.Magazines.Insert(magazineModel);
         }
 
-        public void Delete(int id)
-        {
-            var magazineModel = _unitOfWork.Magazines.Get(id);
-            _unitOfWork.Magazines.Delete(magazineModel);
-        }
-
         public MagazineViewModel Get(int id)
         {
             Magazine magazineModel = _unitOfWork.Magazines.Get(id);
@@ -58,6 +52,12 @@ namespace Library.BusinessLogicLayer.Services
             magazineModel.YearOfPublishing = magazine.YearOfPublishing;
 
             _unitOfWork.Magazines.Update(magazineModel);
+        }
+
+        public void Delete(int id)
+        {
+            var magazineModel = _unitOfWork.Magazines.Get(id);
+            _unitOfWork.Magazines.Delete(magazineModel);
         }
 
         public void SaveToJSON(int id)

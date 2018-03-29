@@ -46,5 +46,20 @@
             </td>
         </tr>
     }
+    @foreach (var brochure in Model.Brochures)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => brochure.Name)
+            </td>
+            <td>
+                @Html.DisplayNameFor(modelItem => brochure)
+            </td>
+            <td>
+                @Html.ActionLink("Update", "UpdateView", "Brochure", new { id = brochure.BrochureId }, null) |
+                @Html.ActionLink("Delete", "DeleteView", "Brochure", new { id = brochure.BrochureId }, null)
+            </td>
+        </tr>
+    }
 
 </table>

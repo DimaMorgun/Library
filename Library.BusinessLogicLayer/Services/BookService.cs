@@ -8,7 +8,6 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System;
 
 namespace Library.BusinessLogicLayer.Services
 {
@@ -50,8 +49,8 @@ namespace Library.BusinessLogicLayer.Services
 
         public BookViewModel Get(int id)
         {
-            List<BookAuthor> bookAuthors = _unitOfWork.BookAuthors.GetAllById<Book>(id);
-            List<BookPublicationHouse> bookPublicationHouses = _unitOfWork.BookPublicationHouses.GetAllById<Book>(id);
+            List<BookAuthor> bookAuthors = _unitOfWork.BookAuthors.GetAllByBookId(id);
+            List<BookPublicationHouse> bookPublicationHouses = _unitOfWork.BookPublicationHouses.GetAllByBookId(id);
 
             var book = new Book() { BookId = bookAuthors.ElementAt(0).Book.BookId, Name = bookAuthors.ElementAt(0).Book.Name, YearOfPublishing = bookAuthors.ElementAt(0).Book.YearOfPublishing };
             var authors = new List<Author>();
@@ -136,9 +135,9 @@ namespace Library.BusinessLogicLayer.Services
             _unitOfWork.Books.Update(bookModel);
 
             
-            List<BookAuthor> oldBookAuthors = _unitOfWork.BookAuthors.GetAllById<Book>(book.BookId);
+            List<BookAuthor> oldBookAuthors = _unitOfWork.BookAuthors.GetAllByBookId(book.BookId);
             var oldBookAuthorsWithRelation = oldBookAuthors.Where(x => x.AuthorId != 0).ToList();
-            selectedAuthors = selectedAuthors == null ? new int[0] : selectedAuthors;
+            selectedAuthors = selectedAuthors ?? (new int[0]);
             var AuthorsHas = oldBookAuthorsWithRelation.Where(x => selectedAuthors.Contains(x.AuthorId)).ToList();
             var AuthorsNothas = oldBookAuthorsWithRelation.Where(x => !selectedAuthors.Contains(x.AuthorId)).ToList();
             _unitOfWork.BookAuthors.Delete(AuthorsNothas);
@@ -156,9 +155,9 @@ namespace Library.BusinessLogicLayer.Services
                 _unitOfWork.BookAuthors.Insert(currentBookAuthors);
             }
 
-            List<BookPublicationHouse> oldPublicationHouses = _unitOfWork.BookPublicationHouses.GetAllById<Book>(book.BookId);
+            List<BookPublicationHouse> oldPublicationHouses = _unitOfWork.BookPublicationHouses.GetAllByBookId(book.BookId);
             var oldBookPublicationHousesWithRelation = oldPublicationHouses.Where(x => x.PublicationHouseId != 0).ToList();
-            selectedPublicationHouses = selectedPublicationHouses == null ? new int[0] : selectedPublicationHouses;
+            selectedPublicationHouses = selectedPublicationHouses ?? (new int[0]);
             var PublicationHousesHas = oldBookPublicationHousesWithRelation.Where(x => selectedPublicationHouses.Contains(x.PublicationHouseId)).ToList();
             var PublicationHousesNothas = oldBookPublicationHousesWithRelation.Where(x => !selectedPublicationHouses.Contains(x.PublicationHouseId)).ToList();
             _unitOfWork.BookPublicationHouses.Delete(PublicationHousesNothas);

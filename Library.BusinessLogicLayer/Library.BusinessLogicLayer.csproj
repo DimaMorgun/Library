@@ -60,6 +60,7 @@
     <Compile Include="Services\BookService.cs" />
     <Compile Include="Services\BrochureService.cs" />
     <Compile Include="Services\MagazineService.cs" />
+    <Compile Include="Services\PublicationHouseService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Library.DataAccessLayer\Library.DataAccessLayer.csproj">

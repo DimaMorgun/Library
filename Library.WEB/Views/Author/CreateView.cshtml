@@ -38,7 +38,7 @@
                 @foreach (var book in Model.Books)
                 {
                     <div class="form-check">
-                        <input type="checkbox" class="form-check-input" name="selectedBooks" value="@book.BookId" id="book @book.BookId" />
+                        <input type="checkbox" class="form-check-input" name="selectedBooks" value="@book.BookId" id="@book.BookId" />
                         <label class="form-check-label" for="@book.BookId">@book.Name</label>
                     </div>
                 }

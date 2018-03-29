@@ -1,0 +1,37 @@
+﻿@model Library.ViewModelLayer.ViewModels.BrochureViewModel
+
+<div>
+    <h4>Brochure</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeOfCover)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeOfCover)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberOfPages)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfPages)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Update", "UpdateView", new { id = Model.BrochureId }) |
+    @Html.ActionLink("Save To Json", "SaveToJSON", new { id = Model.BrochureId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

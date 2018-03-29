@@ -19,19 +19,25 @@
                     <ul class="navbar-nav text-md-center nav-justified w-100">
                         <li class="nav-item active">
                             @Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link", data_icon = "gear" })
-                            <span class="sr-only">(current)</span></a>
+                            <span class="sr-only">(current)</span>
                         </li>
                         <li class="nav-item">
                             @Html.ActionLink("All Publications", "AllPublications", "Home", null, new { @class = "nav-link", data_icon = "gear" })
                         </li>
                         <li class="nav-item">
-                            @Html.ActionLink("Go to Books", "Index", "Book", null, new { @class = "nav-link", data_icon = "gear" })
+                            @Html.ActionLink("Books", "Index", "Book", null, new { @class = "nav-link", data_icon = "gear" })
                         </li>
                         <li class="nav-item">
-                            @Html.ActionLink("Go to Authors", "Index", "Author", null, new { @class = "nav-link", data_icon = "gear" })
+                            @Html.ActionLink("Authors", "Index", "Author", null, new { @class = "nav-link", data_icon = "gear" })
                         </li>
                         <li class="nav-item">
-                            @Html.ActionLink("Go to Magazines", "Index", "Magazine", null, new { @class = "nav-link", data_icon = "gear" })
+                            @Html.ActionLink("Publication houses", "Index", "PublicationHouse", null, new { @class = "nav-link", data_icon = "gear" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Magazines", "Index", "Magazine", null, new { @class = "nav-link", data_icon = "gear" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Brochures", "Index", "Brochure", null, new { @class = "nav-link", data_icon = "gear" })
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>

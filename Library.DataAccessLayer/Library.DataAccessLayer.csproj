@@ -60,7 +60,6 @@
     <Compile Include="Connection\CurrentConnection.cs" />
     <Compile Include="Context\LibraryDataAccessContext.cs" />
     <Compile Include="Interfaces\IGenericRepository.cs" />
-    <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Migrations\201803151352488_InitializeDB.cs" />
     <Compile Include="Migrations\201803151352488_InitializeDB.Designer.cs">

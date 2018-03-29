@@ -14,3 +14,4 @@ C:\Users\Public\Documents\repository\Library\Library.ViewModelLayer\bin\Debug\Li
 C:\Users\Public\Documents\repository\Library\Library.ViewModelLayer\obj\Debug\Library.ViewModelLayer.csproj.CoreCompileInputs.cache
 C:\Users\Public\Documents\repository\Library\Library.ViewModelLayer\obj\Debug\Library.ViewModelLayer.dll
 C:\Users\Public\Documents\repository\Library\Library.ViewModelLayer\obj\Debug\Library.ViewModelLayer.pdb
+C:\Users\Anuitex-52\source\repos\Library\Library.ViewModelLayer\obj\Debug\Library.ViewModelLayer.csprojResolveAssemblyReference.cache

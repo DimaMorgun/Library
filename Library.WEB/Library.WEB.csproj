@@ -173,9 +173,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AuthorController.cs" />
     <Compile Include="Controllers\BookController.cs" />
+    <Compile Include="Controllers\BrochureController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MagazineController.cs" />
+    <Compile Include="Controllers\PublicationHouseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -278,6 +280,16 @@
     <Content Include="Views\Magazine\UpdateView.cshtml" />
     <Content Include="Views\Magazine\DeleteView.cshtml" />
     <Content Include="Views\Home\AllPublications.cshtml" />
+    <Content Include="Views\PublicationHouse\Index.cshtml" />
+    <Content Include="Views\PublicationHouse\CreateView.cshtml" />
+    <Content Include="Views\PublicationHouse\GetByIdView.cshtml" />
+    <Content Include="Views\PublicationHouse\UpdateView.cshtml" />
+    <Content Include="Views\PublicationHouse\DeleteView.cshtml" />
+    <Content Include="Views\Brochure\Index.cshtml" />
+    <Content Include="Views\Brochure\CreateView.cshtml" />
+    <Content Include="Views\Brochure\GetByIdView.cshtml" />
+    <Content Include="Views\Brochure\UpdateView.cshtml" />
+    <Content Include="Views\Brochure\DeleteView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

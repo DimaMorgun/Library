@@ -25,3 +25,4 @@ C:\Users\Public\Documents\repository\Library\Library.EntityLayer\bin\Debug\Dappe
 C:\Users\Public\Documents\repository\Library\Library.EntityLayer\obj\Debug\Library.EntityLayer.csproj.CoreCompileInputs.cache
 C:\Users\Public\Documents\repository\Library\Library.EntityLayer\obj\Debug\Library.EntityLayer.dll
 C:\Users\Public\Documents\repository\Library\Library.EntityLayer\obj\Debug\Library.EntityLayer.pdb
+C:\Users\Anuitex-52\source\repos\Library\Library.EntityLayer\obj\Debug\Library.EntityLayer.csprojResolveAssemblyReference.cache

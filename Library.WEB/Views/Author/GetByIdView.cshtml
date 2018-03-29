@@ -35,7 +35,8 @@
         <dd>
             @foreach (var book in Model.Books)
             {
-                <p>@Html.Label(book.Name)</p>
+                @Html.Label(book.Name)
+                <br />
             }
         </dd>
 
