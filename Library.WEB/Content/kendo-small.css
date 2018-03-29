@@ -1,0 +1,13 @@
+﻿.demo-section label {
+    display: block;
+    margin: 15px 0 5px 0;
+}
+
+.demo-section {
+    margin-bottom: 25px;
+}
+
+#get {
+    float: right;
+    margin: 25px auto 0;
+}

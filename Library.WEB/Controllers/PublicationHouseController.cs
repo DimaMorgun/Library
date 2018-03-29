@@ -32,9 +32,9 @@ namespace Library.WEB.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(PublicationHouseViewModel publicationHouse, int[] selectedBooks)
+        public ActionResult Create(PublicationHouseViewModel publicationHouse)
         {
-            _publicationHouseService.Insert(publicationHouse, selectedBooks);
+            _publicationHouseService.Insert(publicationHouse);
 
             return RedirectToAction("Index");
         }
@@ -56,9 +56,9 @@ namespace Library.WEB.Controllers
         }
 
         [HttpPost]
-        public ActionResult Update(PublicationHouseViewModel publicationHouse, int[] selectedBooks)
+        public ActionResult Update(PublicationHouseViewModel publicationHouse)
         {
-            _publicationHouseService.Update(publicationHouse, selectedBooks);
+            _publicationHouseService.Update(publicationHouse);
 
             return RedirectToAction("Index");
         }

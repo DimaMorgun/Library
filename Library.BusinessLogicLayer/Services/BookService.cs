@@ -20,7 +20,7 @@ namespace Library.BusinessLogicLayer.Services
             _unitOfWork = new UnitOfWork();
         }
 
-        public void Insert(BookViewModel book, int[] selectedAuthors, int[] selectedPublicationHouses)
+        public void Insert(BookViewModel book)
         {
             var bookModel = Mapper.Map<BookViewModel, Book>(book);
             var bookAuthorsModel = new List<BookAuthor>();
@@ -28,16 +28,16 @@ namespace Library.BusinessLogicLayer.Services
 
             var bookId = _unitOfWork.Books.Insert(bookModel);
 
-            if (selectedAuthors != null)
+            if (book.SelectedAuthors != null)
             {
-                foreach (var authorId in selectedAuthors)
+                foreach (var authorId in book.SelectedAuthors)
                 {
                     bookAuthorsModel.Add(new BookAuthor() { BookId = bookId, AuthorId = authorId });
                 }
             }
-            if (selectedPublicationHouses != null)
+            if (book.SelectedPublicationHouses != null)
             {
-                foreach (var publicationHouseId in selectedPublicationHouses)
+                foreach (var publicationHouseId in book.SelectedPublicationHouses)
                 {
                     bookPublicationHousesModel.Add(new BookPublicationHouse() { BookId = bookId, PublicationHouseId = publicationHouseId });
                 }
@@ -127,25 +127,24 @@ namespace Library.BusinessLogicLayer.Services
             return bookAuthorsViewModel;
         }
 
-        public void Update(BookViewModel book, int[] selectedAuthors, params int[] selectedPublicationHouses)
+        public void Update(BookViewModel book)
         {
             Book bookModel = _unitOfWork.Books.Get(book.BookId);
             bookModel.Name = book.Name;
             bookModel.YearOfPublishing = book.YearOfPublishing;
             _unitOfWork.Books.Update(bookModel);
 
-            
+
             List<BookAuthor> oldBookAuthors = _unitOfWork.BookAuthors.GetAllByBookId(book.BookId);
             var oldBookAuthorsWithRelation = oldBookAuthors.Where(x => x.AuthorId != 0).ToList();
-            selectedAuthors = selectedAuthors ?? (new int[0]);
-            var AuthorsHas = oldBookAuthorsWithRelation.Where(x => selectedAuthors.Contains(x.AuthorId)).ToList();
-            var AuthorsNothas = oldBookAuthorsWithRelation.Where(x => !selectedAuthors.Contains(x.AuthorId)).ToList();
+            var AuthorsHas = oldBookAuthorsWithRelation.Where(x => book.SelectedAuthors.Contains(x.AuthorId)).ToList();
+            var AuthorsNothas = oldBookAuthorsWithRelation.Where(x => !book.SelectedAuthors.Contains(x.AuthorId)).ToList();
             _unitOfWork.BookAuthors.Delete(AuthorsNothas);
-            if (selectedAuthors != null)
+            if (book.SelectedAuthors != null)
             {
                 List<BookAuthor> currentBookAuthors = new List<BookAuthor>();
 
-                foreach (var newAuthorId in selectedAuthors)
+                foreach (var newAuthorId in book.SelectedAuthors)
                 {
                     if (AuthorsHas.FirstOrDefault(x => x.AuthorId == newAuthorId) == null)
                     {
@@ -157,15 +156,14 @@ namespace Library.BusinessLogicLayer.Services
 
             List<BookPublicationHouse> oldPublicationHouses = _unitOfWork.BookPublicationHouses.GetAllByBookId(book.BookId);
             var oldBookPublicationHousesWithRelation = oldPublicationHouses.Where(x => x.PublicationHouseId != 0).ToList();
-            selectedPublicationHouses = selectedPublicationHouses ?? (new int[0]);
-            var PublicationHousesHas = oldBookPublicationHousesWithRelation.Where(x => selectedPublicationHouses.Contains(x.PublicationHouseId)).ToList();
-            var PublicationHousesNothas = oldBookPublicationHousesWithRelation.Where(x => !selectedPublicationHouses.Contains(x.PublicationHouseId)).ToList();
+            var PublicationHousesHas = oldBookPublicationHousesWithRelation.Where(x => book.SelectedPublicationHouses.Contains(x.PublicationHouseId)).ToList();
+            var PublicationHousesNothas = oldBookPublicationHousesWithRelation.Where(x => !book.SelectedPublicationHouses.Contains(x.PublicationHouseId)).ToList();
             _unitOfWork.BookPublicationHouses.Delete(PublicationHousesNothas);
-            if (selectedPublicationHouses != null)
+            if (book.SelectedPublicationHouses != null)
             {
                 List<BookPublicationHouse> currentBookPublicationHouses = new List<BookPublicationHouse>();
 
-                foreach (var newPublicationHouseId in selectedPublicationHouses)
+                foreach (var newPublicationHouseId in book.SelectedPublicationHouses)
                 {
                     if (PublicationHousesHas.FirstOrDefault(x => x.PublicationHouseId == newPublicationHouseId) == null)
                     {

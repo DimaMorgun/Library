@@ -9,10 +9,12 @@ namespace Library.ViewModelLayer.ViewModels
         public string Adress { get; set; }
 
         public virtual ICollection<BookViewModel> Books { get; set; }
+        public ICollection<int> SelectedBooks { get; set; }
 
         public PublicationHouseViewModel()
         {
             Books = new List<BookViewModel>();
+            SelectedBooks = new List<int>();
         }
     }
 }

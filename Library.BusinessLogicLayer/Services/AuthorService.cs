@@ -20,16 +20,16 @@ namespace Library.BusinessLogicLayer.Services
             _unitOfWork = new UnitOfWork();
         }
 
-        public void Insert(AuthorViewModel author, int[] selectedBooks)
+        public void Insert(AuthorViewModel author)
         {
             var authorModel = Mapper.Map<AuthorViewModel, Author>(author);
             var bookAuthorsModel = new List<BookAuthor>();
 
             var authorId = _unitOfWork.Authors.Insert(authorModel);
 
-            if (selectedBooks != null)
+            if (author.SelectedBooks != null)
             {
-                foreach (var bookId in selectedBooks)
+                foreach (var bookId in author.SelectedBooks)
                 {
                     bookAuthorsModel.Add(new BookAuthor() { BookId = bookId, AuthorId = authorId });
                 }
@@ -100,7 +100,7 @@ namespace Library.BusinessLogicLayer.Services
             return authorBooksViewModel;
         }
 
-        public void Update(AuthorViewModel author, int[] selectedBooks)
+        public void Update(AuthorViewModel author)
         {
             Author authorModel = _unitOfWork.Authors.Get(author.AuthorId);
             authorModel.Name = author.Name;
@@ -110,15 +110,14 @@ namespace Library.BusinessLogicLayer.Services
 
             List<BookAuthor> oldBookAuthors = _unitOfWork.BookAuthors.GetAllByAuthorId(author.AuthorId);
             var oldBookAuthorsWithRelation = oldBookAuthors.Where(x => x.BookId != 0).ToList();
-            selectedBooks = selectedBooks ?? (new int[0]);
-            var BooksHas = oldBookAuthorsWithRelation.Where(x => selectedBooks.Contains(x.BookId)).ToList();
-            var BooksNothas = oldBookAuthorsWithRelation.Where(x => !selectedBooks.Contains(x.BookId)).ToList();
+            var BooksHas = oldBookAuthorsWithRelation.Where(x => author.SelectedBooks.Contains(x.BookId)).ToList();
+            var BooksNothas = oldBookAuthorsWithRelation.Where(x => !author.SelectedBooks.Contains(x.BookId)).ToList();
             _unitOfWork.BookAuthors.Delete(BooksNothas);
-            if (selectedBooks != null)
+            if (author.SelectedBooks != null)
             {
                 List<BookAuthor> currentBookAuthors = new List<BookAuthor>();
 
-                foreach (var newBookId in selectedBooks)
+                foreach (var newBookId in author.SelectedBooks)
                 {
                     if (BooksHas.FirstOrDefault(x => x.BookId == newBookId) == null)
                     {

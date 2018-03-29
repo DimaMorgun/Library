@@ -10,10 +10,12 @@ namespace Library.ViewModelLayer.ViewModels
         public int? Deathday { get; set; }
 
         public virtual ICollection<BookViewModel> Books { get; set; }
+        public ICollection<int> SelectedBooks { get; set; }
 
         public AuthorViewModel()
         {
             Books = new List<BookViewModel>();
+            SelectedBooks = new List<int>();
         }
     }
 }

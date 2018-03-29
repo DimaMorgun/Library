@@ -3,6 +3,67 @@
 <p>
     @Html.ActionLink("Create New", "CreateView")
 </p>
+
+<div id="example">
+    <div id="grid"></div>
+    <label for="countries" class="info">Choose your country:</label>
+    <input id="countries" />
+    <script src="http://goessner.net/download/prj/jsonxml/json2xml.js"></script>
+    <script>
+        var x = @Html.Raw(Json.Encode(Model.ElementAt(0)));
+        q = "<entry> <id>https://demos.telerik.com/kendo-ui/service/Northwind.svc/Customers('ANATR')</id> <title type="text"></title> <updated>2018-03-29T18:45:00Z</updated> <author> <name /> </author> <link rel="edit" title="Customer" href="Customers('ANATR')" /> <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/Orders" type="application/atom+xml;type=feed" title="Orders" href="Customers('ANATR')/Orders" /> <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/CustomerDemographics" type="application/atom+xml;type=feed" title="CustomerDemographics" href="Customers('ANATR')/CustomerDemographics" /> <category term="SampleModel.Customer" scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" /> <content type="application/xml"> <m:properties> <d:CustomerID>ANATR</d:CustomerID> <d:CompanyName>Ana Trujillo Emparedados y helados</d:CompanyName> <d:ContactName>Ana Trujillo</d:ContactName> <d:ContactTitle>Owner</d:ContactTitle> <d:Address>Avda. de la Constitución 2222</d:Address> <d:City>México D.F.</d:City> <d:Region m:null="true" /> <d:PostalCode>05021</d:PostalCode> <d:Country>Mexico</d:Country> <d:Phone>(5) 555-4729</d:Phone> <d:Fax>(5) 555-3745</d:Fax> <d:Bool m:type="Edm.Boolean" m:null="true" /> </m:properties> </content> </entry>";
+        $(document).ready(function () {
+            $("#grid").kendoGrid({
+                dataSource: {
+                    type: "odata",
+                    transport: {
+                        read: x
+                    },
+                    pageSize: 20
+                },
+                height: 550,
+                groupable: true,
+                sortable: true,
+                pageable: {
+                    refresh: true,
+                    pageSizes: true,
+                    buttonCount: 5
+                },
+                columns: [{
+                    field: "Name",
+                    title: "Name",
+                    width: 240
+                }, {
+                    field: "YearOfPublishing",
+                    title: "Year of publishing"
+                }]
+            });
+        });
+    </script>
+</div>
+
+<style type="text/css">
+    .customer-photo {
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background-size: 32px 35px;
+        background-position: center center;
+        vertical-align: middle;
+        line-height: 32px;
+        box-shadow: inset 0 0 1px #999, inset 0 0 10px rgba(0,0,0,.2);
+        margin-left: 5px;
+    }
+
+    .customer-name {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 32px;
+        padding-left: 3px;
+    }
+</style>
+
 <table class="table">
     <tr>
         <th>
