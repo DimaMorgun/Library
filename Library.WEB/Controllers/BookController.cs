@@ -1,8 +1,13 @@
 ﻿using Library.BusinessLogicLayer.Services;
 using Library.ViewModelLayer.ViewModels;
 
+using Newtonsoft.Json;
+
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
+using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace Library.WEB.Controllers
 {
@@ -21,6 +26,14 @@ namespace Library.WEB.Controllers
             List<BookViewModel> allBooks = _bookService.GetAll();
 
             return View(allBooks);
+        }
+
+        [HttpGet]
+        public JsonResult GetAll()
+        {
+            List<BookViewModel> allBooks = _bookService.GetAll();
+
+            return Json(allBooks, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]

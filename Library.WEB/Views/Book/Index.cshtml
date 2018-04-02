@@ -6,38 +6,82 @@
 
 <div id="example">
     <div id="grid"></div>
-    <label for="countries" class="info">Choose your country:</label>
-    <input id="countries" />
-    <script src="http://goessner.net/download/prj/jsonxml/json2xml.js"></script>
     <script>
-        var x = @Html.Raw(Json.Encode(Model.ElementAt(0)));
-        q = "<entry> <id>https://demos.telerik.com/kendo-ui/service/Northwind.svc/Customers('ANATR')</id> <title type="text"></title> <updated>2018-03-29T18:45:00Z</updated> <author> <name /> </author> <link rel="edit" title="Customer" href="Customers('ANATR')" /> <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/Orders" type="application/atom+xml;type=feed" title="Orders" href="Customers('ANATR')/Orders" /> <link rel="http://schemas.microsoft.com/ado/2007/08/dataservices/related/CustomerDemographics" type="application/atom+xml;type=feed" title="CustomerDemographics" href="Customers('ANATR')/CustomerDemographics" /> <category term="SampleModel.Customer" scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme" /> <content type="application/xml"> <m:properties> <d:CustomerID>ANATR</d:CustomerID> <d:CompanyName>Ana Trujillo Emparedados y helados</d:CompanyName> <d:ContactName>Ana Trujillo</d:ContactName> <d:ContactTitle>Owner</d:ContactTitle> <d:Address>Avda. de la Constitución 2222</d:Address> <d:City>México D.F.</d:City> <d:Region m:null="true" /> <d:PostalCode>05021</d:PostalCode> <d:Country>Mexico</d:Country> <d:Phone>(5) 555-4729</d:Phone> <d:Fax>(5) 555-3745</d:Fax> <d:Bool m:type="Edm.Boolean" m:null="true" /> </m:properties> </content> </entry>";
         $(document).ready(function () {
-            $("#grid").kendoGrid({
-                dataSource: {
-                    type: "odata",
-                    transport: {
-                        read: x
+            var dataSource = new kendo.data.DataSource({
+                transport: {
+                    read: function (e) {
+                        $.ajax({
+                            type: 'GET',
+                            url: "Book/GetAll",
+                            dataType: "json",
+                            success: function (data) {
+                                return e.success(data);
+                            }
+                        });
                     },
-                    pageSize: 20
                 },
-                height: 550,
+
+                schema:
+                {
+                    model:
+                    {
+                        id: "BookId",
+                        fields: {
+                            BookId: { editable: false, nullable: true, type: "number" },
+                            Name: { editable: true, nullable: true, type: "string" },
+                            AuthorName: { editable: true, nullable: true, type: "string" },
+                            YearOfPublishing: { editable: false, nullable: true, type: "number" },
+                        }
+                    }
+                },
+                batch: false,
+                pageSize: 10
+
+            });
+
+            $("#grid").kendoGrid({
+                dataSource: dataSource,
                 groupable: true,
                 sortable: true,
+                editable: {
+                    mode: "inline",
+                    confirmation: false
+                },
+
+                columns: [
+                    {
+                        field: "Name",
+                        title: "Name",
+                        sortable: true
+                    },
+                    {
+                        field: "AuthorName",
+                        title: "Author",
+                        sortable: true
+                    },
+                    {
+                        field: "YearOfPublishing",
+                        title: "Year",
+                        sortable: true
+                    },
+                    {
+                        field: "BookId",
+                        title: "Actions",
+                        sortable: false,
+                        template:
+                        '<a href="Book/GetByIdView/#= BookId #" >Get</a> | <a href="Book/UpdateView/#= BookId #" >Update</a> | <a href="Book/DeleteView/#= BookId #" >Delete</a>',
+                    }
+
+                ],
+                height: "500px",
                 pageable: {
                     refresh: true,
                     pageSizes: true,
                     buttonCount: 5
                 },
-                columns: [{
-                    field: "Name",
-                    title: "Name",
-                    width: 240
-                }, {
-                    field: "YearOfPublishing",
-                    title: "Year of publishing"
-                }]
-            });
+            }).data("kendoGrid");
+
         });
     </script>
 </div>
