@@ -1,9 +1,5 @@
 ﻿@model IEnumerable<Library.ViewModelLayer.ViewModels.BookViewModel>
 
-<p>
-    @Html.ActionLink("Create New", "CreateView")
-</p>
-
 <div id="example">
     <div id="grid"></div>
     <script>
@@ -17,6 +13,24 @@
                             dataType: "json",
                             success: function (data) {
                                 return e.success(data);
+                            }
+                        });
+                    },
+
+                    destroy: function (e) {
+                        $.ajax({
+                            type: 'POST',
+                            url: '/Book/Delete/' + e.data.BookId,
+                            dataType: 'number',
+                            success: function (data) {
+                                $('#grid').data('kendoGrid').dataSource.read();
+                                $('#grid').data('kendoGrid').refresh();
+                                e.success(data);
+                            },
+                            error: function (data) {
+                                $('#grid').data('kendoGrid').dataSource.read();
+                                $('#grid').data('kendoGrid').refresh();
+                                e.error("", "404", data);
                             }
                         });
                     },
@@ -36,10 +50,9 @@
                     }
                 },
                 batch: false,
-                pageSize: 10
+                pageSize: 5
 
             });
-
             $("#grid").kendoGrid({
                 dataSource: dataSource,
                 groupable: true,
@@ -48,16 +61,14 @@
                     mode: "inline",
                     confirmation: false
                 },
-
+                toolbar: [{
+                    template:
+                    '<a href="Book/CreateView">Create New</a>',
+                }],
                 columns: [
                     {
                         field: "Name",
                         title: "Name",
-                        sortable: true
-                    },
-                    {
-                        field: "AuthorName",
-                        title: "Author",
                         sortable: true
                     },
                     {
@@ -67,12 +78,25 @@
                     },
                     {
                         field: "BookId",
-                        title: "Actions",
+                        title: "&nbsp",
                         sortable: false,
+                        width: 105,
                         template:
-                        '<a href="Book/GetByIdView/#= BookId #" >Get</a> | <a href="Book/UpdateView/#= BookId #" >Update</a> | <a href="Book/DeleteView/#= BookId #" >Delete</a>',
+                        '<a class="k-button k-button-icontext" href="Book/GetByIdView/#= BookId #" >Get</a>'
+                    },
+                    {
+                        field: "BookId",
+                        title: "&nbsp",
+                        sortable: false,
+                        width: 129,
+                        template:
+                        '<a class="k-button k-button-icontext" href="Book/UpdateView/#= BookId #" >Update</a>'
+                    },
+                    {
+                        title: "&nbsp",
+                        width: 140,
+                        command: ['destroy']
                     }
-
                 ],
                 height: "500px",
                 pageable: {
@@ -81,61 +105,6 @@
                     buttonCount: 5
                 },
             }).data("kendoGrid");
-
         });
     </script>
 </div>
-
-<style type="text/css">
-    .customer-photo {
-        display: inline-block;
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        background-size: 32px 35px;
-        background-position: center center;
-        vertical-align: middle;
-        line-height: 32px;
-        box-shadow: inset 0 0 1px #999, inset 0 0 10px rgba(0,0,0,.2);
-        margin-left: 5px;
-    }
-
-    .customer-name {
-        display: inline-block;
-        vertical-align: middle;
-        line-height: 32px;
-        padding-left: 3px;
-    }
-</style>
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.YearOfPublishing)
-        </th>
-        <th>
-
-        </th>
-    </tr>
-
-    @foreach (var book in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => book.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => book.YearOfPublishing)
-            </td>
-            <td>
-                @Html.ActionLink("Read", "GetByIdView", new { id = book.BookId }) |
-                @Html.ActionLink("Update", "UpdateView", new { id = book.BookId }) |
-                @Html.ActionLink("Delete", "DeleteView", new { id = book.BookId })
-            </td>
-        </tr>
-    }
-
-</table>
