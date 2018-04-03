@@ -81,6 +81,29 @@ namespace Library.BusinessLogicLayer.Services
             List<Book> allBooksModel = _unitOfWork.Books.GetAll();
 
             var allBooksViewModel = Mapper.Map<List<Book>, List<BookViewModel>>(allBooksModel);
+            foreach (var book in allBooksViewModel)
+            {
+                List<BookAuthor> bookAuthors = _unitOfWork.BookAuthors.GetAllByBookId(book.BookId);
+                var authors = new List<AuthorViewModel>();
+                foreach (var bookAuthor in bookAuthors)
+                {
+                    if (bookAuthor.Author != null)
+                    {
+                        authors.Add(Mapper.Map<Author, AuthorViewModel>(bookAuthor.Author));
+                    }
+                }
+                List<BookPublicationHouse> bookPublicationHouses = _unitOfWork.BookPublicationHouses.GetAllByBookId(book.BookId);
+                var publicationHouses = new List<PublicationHouseViewModel>();
+                foreach (var bookPublicationHouse in bookPublicationHouses)
+                {
+                    if (bookPublicationHouse.PublicationHouse != null)
+                    {
+                        publicationHouses.Add(Mapper.Map<PublicationHouse, PublicationHouseViewModel>(bookPublicationHouse.PublicationHouse));
+                    }
+                }
+                book.Authors = authors;
+                book.PublicationHouses = publicationHouses;
+            }
 
             return allBooksViewModel;
         }

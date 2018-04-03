@@ -22,3 +22,13 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.add-link {
+    height: 30px;
+    margin-left: 0;
+    transition: .2s;
+}
+
+    .add-link:hover {
+        transform: rotate(90deg);
+    }

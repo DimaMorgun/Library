@@ -1,33 +1,7 @@
 ﻿@model IEnumerable<Library.ViewModelLayer.ViewModels.PublicationHouseViewModel>
 
-<p>
-    @Html.ActionLink("Create New", "CreateView")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Adress)
-        </th>
-        <th></th>
-    </tr>
+<div id="example">
+    <div id="grid"></div>
+</div>
 
-@foreach (var publicationHouse in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => publicationHouse.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => publicationHouse.Adress)
-        </td>
-        <td>
-            @Html.ActionLink("Read", "GetByIdView", new { id = publicationHouse.PublicationHouseId }) |
-            @Html.ActionLink("Update", "UpdateView", new { id = publicationHouse.PublicationHouseId }) |
-            @Html.ActionLink("Delete", "DeleteView", new { id = publicationHouse.PublicationHouseId })
-        </td>
-    </tr>
-}
-
-</table>
+<script src="~/Scripts/myScripts/kendo-publicationHouse-grid.js"></script>

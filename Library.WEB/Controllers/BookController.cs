@@ -1,13 +1,8 @@
 ﻿using Library.BusinessLogicLayer.Services;
 using Library.ViewModelLayer.ViewModels;
 
-using Newtonsoft.Json;
-
 using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
-using System.Xml.Linq;
-using System.Xml.Serialization;
 
 namespace Library.WEB.Controllers
 {

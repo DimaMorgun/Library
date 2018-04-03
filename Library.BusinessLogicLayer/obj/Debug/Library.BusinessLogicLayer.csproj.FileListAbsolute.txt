@@ -73,3 +73,8 @@ C:\Users\Public\Documents\repository\Library\Library.BusinessLogicLayer\obj\Debu
 C:\Users\Public\Documents\repository\Library\Library.BusinessLogicLayer\obj\Debug\Library.BusinessLogicLayer.csproj.CoreCompileInputs.cache
 C:\Users\Public\Documents\repository\Library\Library.BusinessLogicLayer\obj\Debug\Library.BusinessLogicLayer.dll
 C:\Users\Public\Documents\repository\Library\Library.BusinessLogicLayer\obj\Debug\Library.BusinessLogicLayer.pdb
+C:\Users\Anuitex-52\source\repos\Library\Library.BusinessLogicLayer\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Anuitex-52\source\repos\Library\Library.BusinessLogicLayer\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Anuitex-52\source\repos\Library\Library.BusinessLogicLayer\bin\Debug\Library.EntityLayer.dll.config
+C:\Users\Anuitex-52\source\repos\Library\Library.BusinessLogicLayer\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Anuitex-52\source\repos\Library\Library.BusinessLogicLayer\bin\Debug\Microsoft.AspNet.Identity.Core.xml

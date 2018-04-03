@@ -1,39 +1,7 @@
 ﻿@model IEnumerable<Library.ViewModelLayer.ViewModels.BrochureViewModel>
 
-<p>
-    @Html.ActionLink("Create New", "CreateView")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TypeOfCover)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NumberOfPages)
-        </th>
-        <th></th>
-    </tr>
+<div id="example">
+    <div id="grid"></div>
+</div>
 
-@foreach (var brochure in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => brochure.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => brochure.TypeOfCover)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => brochure.NumberOfPages)
-        </td>
-        <td>
-            @Html.ActionLink("Read", "GetByIdView", new { id = brochure.BrochureId }) |
-            @Html.ActionLink("Update", "UpdateView", new { id = brochure.BrochureId }) |
-            @Html.ActionLink("Delete", "DeleteView", new { id = brochure.BrochureId })
-        </td>
-    </tr>
-}
-
-</table>
+<script src="~/Scripts/myScripts/kendo-brochure-grid.js"></script>

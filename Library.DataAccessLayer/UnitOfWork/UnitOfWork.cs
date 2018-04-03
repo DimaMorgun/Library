@@ -1,5 +1,4 @@
 ﻿using Library.DataAccessLayer.Context;
-using Library.DataAccessLayer.Interfaces;
 using Library.DataAccessLayer.Repositories;
 using Library.EntityLayer.Models;
 
@@ -7,7 +6,7 @@ using System;
 
 namespace Library.DataAccessLayer.UnitOfWork
 {
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : IDisposable
     {
         private LibraryDataAccessContext _libraryContext;
         private GenericRepository<Book> _bookRepository;
@@ -23,7 +22,7 @@ namespace Library.DataAccessLayer.UnitOfWork
             _libraryContext = new LibraryDataAccessContext();
         }
 
-        public IGenericRepository<Book> Books
+        public GenericRepository<Book> Books
         {
             get
             {
@@ -32,7 +31,7 @@ namespace Library.DataAccessLayer.UnitOfWork
                 return _bookRepository;
             }
         }
-        public IGenericRepository<Author> Authors
+        public GenericRepository<Author> Authors
         {
             get
             {
@@ -50,7 +49,7 @@ namespace Library.DataAccessLayer.UnitOfWork
                 return _bookAuthorRepository;
             }
         }
-        public IGenericRepository<PublicationHouse> PublicationHouses
+        public GenericRepository<PublicationHouse> PublicationHouses
         {
             get
             {
@@ -68,7 +67,7 @@ namespace Library.DataAccessLayer.UnitOfWork
                 return _bookPublicationHouseRepository;
             }
         }
-        public IGenericRepository<Magazine> Magazines
+        public GenericRepository<Magazine> Magazines
         {
             get
             {
@@ -77,7 +76,7 @@ namespace Library.DataAccessLayer.UnitOfWork
                 return _magazineRepository;
             }
         }
-        public IGenericRepository<Brochure> Brochures
+        public GenericRepository<Brochure> Brochures
         {
             get
             {

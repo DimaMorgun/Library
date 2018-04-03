@@ -24,6 +24,14 @@ namespace Library.WEB.Controllers
         }
 
         [HttpGet]
+        public JsonResult GetAll()
+        {
+            List<MagazineViewModel> allMagazines = _magazineService.GetAll();
+
+            return Json(allMagazines, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
         public ActionResult CreateView()
         {
             return View();

@@ -1,42 +1,7 @@
 ﻿@model IEnumerable<Library.ViewModelLayer.ViewModels.AuthorViewModel>
 
-<p>
-    @Html.ActionLink("Create New", "CreateView")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Birthday)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Deathday)
-        </th>
-        <th>
+<div id="example">
+    <div id="grid"></div>
+</div>
 
-        </th>
-    </tr>
-
-    @foreach (var author in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => author.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => author.Birthday)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => author.Deathday)
-            </td>
-            <td>
-                @Html.ActionLink("Read", "GetByIdView", new { id = author.AuthorId }) |
-                @Html.ActionLink("Update", "UpdateView", new { id = author.AuthorId }) |
-                @Html.ActionLink("Delete", "DeleteView", new { id = author.AuthorId })
-            </td>
-        </tr>
-    }
-
-</table>
+<script src="~/Scripts/myScripts/kendo-author-grid.js"></script>

@@ -1,39 +1,7 @@
 ﻿@model IEnumerable<Library.ViewModelLayer.ViewModels.MagazineViewModel>
 
-<p>
-    @Html.ActionLink("Create New", "CreateView")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Number)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.YearOfPublishing)
-        </th>
-        <th></th>
-    </tr>
+<div id="example">
+    <div id="grid"></div>
+</div>
 
-@foreach (var magazine in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => magazine.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => magazine.Number)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => magazine.YearOfPublishing)
-        </td>
-        <td>
-            @Html.ActionLink("Read", "GetByIdView", new { id = magazine.MagazineId }) |
-            @Html.ActionLink("Update", "UpdateView", new { id = magazine.MagazineId }) |
-            @Html.ActionLink("Delete", "DeleteView", new { id = magazine.MagazineId })
-        </td>
-    </tr>
-}
-
-</table>
+<script src="~/Scripts/myScripts/kendo-magazine-grid.js"></script>

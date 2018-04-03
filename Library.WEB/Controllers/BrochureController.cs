@@ -24,6 +24,14 @@ namespace Library.WEB.Controllers
         }
 
         [HttpGet]
+        public JsonResult GetAll()
+        {
+            List<BrochureViewModel> allbrochures = _brochureService.GetAll();
+
+            return Json(allbrochures, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
         public ActionResult CreateView()
         {
             return View();

@@ -52,3 +52,4 @@ C:\Users\Public\Documents\repository\Library\TestProject\obj\Debug\TestProject.c
 C:\Users\Public\Documents\repository\Library\TestProject\obj\Debug\TestProject.csproj.CoreCompileInputs.cache
 C:\Users\Public\Documents\repository\Library\TestProject\obj\Debug\TestProject.exe
 C:\Users\Public\Documents\repository\Library\TestProject\obj\Debug\TestProject.pdb
+C:\Users\Anuitex-52\source\repos\Library\TestProject\bin\Debug\Library.EntityLayer.dll.config

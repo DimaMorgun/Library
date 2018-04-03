@@ -1,4 +1,5 @@
 using Library.EntityLayer.Models;
+
 using System.Data.Entity;
 
 namespace Library.DataAccessLayer.Context
@@ -12,7 +13,6 @@ namespace Library.DataAccessLayer.Context
         public DbSet<BookPublicationHouse> BookPublicationHouses { get; set; }
         public DbSet<Magazine> Magazines { get; set; }
         public DbSet<Brochure> Brochures { get; set; }
-        
 
         public LibraryDataAccessContext() : base("name=LibraryDataAccessContext")
         {

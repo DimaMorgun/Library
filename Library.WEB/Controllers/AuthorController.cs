@@ -24,6 +24,14 @@ namespace Library.WEB.Controllers
         }
 
         [HttpGet]
+        public JsonResult GetAll()
+        {
+            List<AuthorViewModel> allAuthors = _authorService.GetAll();
+
+            return Json(allAuthors, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
         public ActionResult CreateView()
         {
             AuthorBooksViewModel authorBooks = _authorService.GetAuthorBooks();
