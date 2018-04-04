@@ -4,7 +4,7 @@
             read: function (e) {
                 $.ajax({
                     type: 'GET',
-                    url: "Magazine/GetAll",
+                    url: "GetAll/",
                     dataType: "json",
                     success: function (data) {
                         return e.success(data);
@@ -15,7 +15,7 @@
             destroy: function (e) {
                 $.ajax({
                     type: 'POST',
-                    url: 'Magazine/Delete/' + e.data.MagazineId,
+                    url: 'Delete/' + e.data.MagazineId,
                     dataType: 'number',
                     success: function (data) {
                         $('#grid').data('kendoGrid').dataSource.read();
@@ -58,7 +58,7 @@
         },
         toolbar: [{
             template:
-            '<a class="add-link" href="Magazine/CreateView"><img class="add-link" src="/Content/plus.svg" /></a>',
+            '<a class="add-link" href="CreateView"><img class="add-link" src="/Content/plus.svg" /></a>',
         }],
         columns: [
             {
@@ -82,7 +82,7 @@
                 sortable: false,
                 width: 105,
                 template:
-                '<a class="k-button k-button-icontext" href="Magazine/GetByIdView/#= MagazineId #" >Get</a>'
+                '<a class="k-button k-button-icontext" href="GetByIdView/#= MagazineId #" >Get</a>'
             },
             {
                 field: "MagazineId",
@@ -90,7 +90,7 @@
                 sortable: false,
                 width: 129,
                 template:
-                '<a class="k-button k-button-icontext" href="Magazine/UpdateView/#= MagazineId #" >Update</a>'
+                '<a class="k-button k-button-icontext" href="UpdateView/#= MagazineId #" >Update</a>'
             },
             {
                 title: "&nbsp",

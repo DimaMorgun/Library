@@ -395,3 +395,5 @@ C:\Users\Anuitex-52\source\repos\Library\Library.WEB\bin\Microsoft.Owin.Host.Sys
 C:\Users\Anuitex-52\source\repos\Library\Library.WEB\bin\Microsoft.Owin.Security.xml
 C:\Users\Anuitex-52\source\repos\Library\Library.WEB\bin\Microsoft.Owin.Security.Cookies.xml
 C:\Users\Anuitex-52\source\repos\Library\Library.WEB\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Anuitex-52\source\repos\Library\Library.WEB\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Anuitex-52\source\repos\Library\Library.WEB\bin\Microsoft.AspNet.Identity.EntityFramework.xml

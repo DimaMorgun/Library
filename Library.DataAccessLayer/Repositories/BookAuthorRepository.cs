@@ -1,5 +1,4 @@
-﻿using Library.DataAccessLayer.Connection;
-using Library.EntityLayer.Models;
+﻿using Library.EntityLayer.Models;
 
 using Dapper;
 
@@ -11,11 +10,18 @@ namespace Library.DataAccessLayer.Repositories
 {
     public class BookAuthorRepository : GenericRepository<BookAuthor>
     {
+        private string _connection;
+
+        public BookAuthorRepository(string connection) : base(connection)
+        {
+            _connection = connection;
+        }
+
         public List<BookAuthor> GetAllByBookId(int id)
         {
             var query = $"SELECT BookAuthors.*, Books.*, Authors.* FROM Books LEFT JOIN BookAuthors on BookAuthors.BookId = Books.BookId LEFT JOIN Authors on Authors.AuthorId = BookAuthors.AuthorId WHERE Books.BookId = {id};";
             List<BookAuthor> bookAuthors = new List<BookAuthor>();
-            using (SqlConnection connection = new SqlConnection(CurrentConnection.ConnectionString))
+            using (SqlConnection connection = new SqlConnection(_connection))
             {
                 bookAuthors = connection.Query<BookAuthor, Book, Author, BookAuthor>(query, (ba, book, author) =>
                 {
@@ -33,7 +39,7 @@ namespace Library.DataAccessLayer.Repositories
         {
             var query = $"SELECT BookAuthors.*, Authors.*, Books.* FROM Authors LEFT JOIN BookAuthors on BookAuthors.AuthorId = Authors.AuthorId LEFT JOIN Books on Books.BookId = BookAuthors.BookId WHERE Authors.AuthorId = {id};";
             List<BookAuthor> bookAuthors = new List<BookAuthor>();
-            using (SqlConnection connection = new SqlConnection(CurrentConnection.ConnectionString))
+            using (SqlConnection connection = new SqlConnection(_connection))
             {
                 bookAuthors = connection.Query<BookAuthor, Author, Book, BookAuthor>(query, (ba, author, book) =>
                 {

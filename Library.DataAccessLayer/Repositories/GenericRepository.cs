@@ -1,4 +1,4 @@
-﻿using Library.DataAccessLayer.Connection;
+﻿using Library.DataAccessLayer.Interfaces;
 
 using Dapper.Contrib.Extensions;
 
@@ -8,13 +8,13 @@ using System.Linq;
 
 namespace Library.DataAccessLayer.Repositories
 {
-    public class GenericRepository<TEntity> where TEntity : class
+    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
         private SqlConnection _connection;
 
-        public GenericRepository()
+        public GenericRepository(string connection)
         {
-            _connection = new SqlConnection(CurrentConnection.ConnectionString);
+            _connection = new SqlConnection(connection);
         }
         public int Insert(TEntity item)
         {

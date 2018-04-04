@@ -53,3 +53,7 @@ C:\Users\Public\Documents\repository\Library\TestProject\obj\Debug\TestProject.c
 C:\Users\Public\Documents\repository\Library\TestProject\obj\Debug\TestProject.exe
 C:\Users\Public\Documents\repository\Library\TestProject\obj\Debug\TestProject.pdb
 C:\Users\Anuitex-52\source\repos\Library\TestProject\bin\Debug\Library.EntityLayer.dll.config
+C:\Users\Anuitex-52\source\repos\Library\TestProject\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Anuitex-52\source\repos\Library\TestProject\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Anuitex-52\source\repos\Library\TestProject\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Anuitex-52\source\repos\Library\TestProject\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml

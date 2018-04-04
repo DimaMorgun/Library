@@ -4,7 +4,7 @@
             read: function (e) {
                 $.ajax({
                     type: 'GET',
-                    url: "Book/GetAll",
+                    url: "GetAll/",
                     dataType: "json",
                     success: function (data) {
                         data.forEach(function (book) {
@@ -27,7 +27,7 @@
             destroy: function (e) {
                 $.ajax({
                     type: 'POST',
-                    url: 'Book/Delete/' + e.data.BookId,
+                    url: 'Delete/' + e.data.BookId,
                     dataType: 'number',
                     success: function (data) {
                         $('#grid').data('kendoGrid').dataSource.read();
@@ -71,7 +71,7 @@
         },
         toolbar: [{
             template:
-            '<a class="add-link" href="Book/CreateView"><img class="add-link" src="/Content/plus.svg" /></a>',
+            '<a class="add-link" href="CreateView"><img class="add-link" src="/Content/plus.svg" /></a>',
         }],
         columns: [
             {
@@ -100,7 +100,7 @@
                 sortable: false,
                 width: 105,
                 template:
-                '<a class="k-button k-button-icontext" href="Book/GetByIdView/#= BookId #" >Get</a>'
+                '<a class="k-button k-button-icontext" href="GetByIdView/#= BookId #" >Get</a>'
             },
             {
                 field: "BookId",
@@ -108,7 +108,7 @@
                 sortable: false,
                 width: 129,
                 template:
-                '<a class="k-button k-button-icontext" href="Book/UpdateView/#= BookId #" >Update</a>'
+                '<a class="k-button k-button-icontext" href="UpdateView/#= BookId #" >Update</a>'
             },
             {
                 title: "&nbsp",

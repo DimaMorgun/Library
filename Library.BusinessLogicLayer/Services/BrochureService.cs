@@ -1,4 +1,5 @@
-﻿using Library.DataAccessLayer.UnitOfWork;
+﻿using Library.DataAccessLayer.Connection;
+using Library.DataAccessLayer.UnitOfWork;
 using Library.EntityLayer.Models;
 using Library.ViewModelLayer.ViewModels;
 
@@ -16,7 +17,7 @@ namespace Library.BusinessLogicLayer.Services
 
         public BrochureService()
         {
-            _unitOfWork = new UnitOfWork();
+            _unitOfWork = new UnitOfWork(CurrentConnection.ConnectionString);
         }
 
         public void Insert(BrochureViewModel brochure)

@@ -1,10 +1,9 @@
-﻿using Library.DataAccessLayer.UnitOfWork;
+﻿using Library.DataAccessLayer.Connection;
+using Library.DataAccessLayer.UnitOfWork;
 using Library.EntityLayer.Models;
 using Library.ViewModelLayer.ViewModels;
-
 using AutoMapper;
 using Newtonsoft.Json;
-
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,7 +16,7 @@ namespace Library.BusinessLogicLayer.Services
 
         public PublicationHouseService()
         {
-            _unitOfWork = new UnitOfWork();
+            _unitOfWork = new UnitOfWork(CurrentConnection.ConnectionString);
         }
 
         public void Insert(PublicationHouseViewModel publicationHouse)

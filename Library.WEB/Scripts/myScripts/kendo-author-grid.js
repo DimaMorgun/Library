@@ -4,7 +4,7 @@
             read: function (e) {
                 $.ajax({
                     type: 'GET',
-                    url: "Author/GetAll",
+                    url: "GetAll/",
                     dataType: "json",
                     success: function (data) {
                         data.forEach(function (author) {
@@ -22,7 +22,7 @@
             destroy: function (e) {
                 $.ajax({
                     type: 'POST',
-                    url: 'Author/Delete/' + e.data.AuthorId,
+                    url: 'Delete/' + e.data.AuthorId,
                     dataType: 'number',
                     success: function (data) {
                         $('#grid').data('kendoGrid').dataSource.read();
@@ -67,7 +67,7 @@
         },
         toolbar: [{
             template:
-            '<a class="add-link" href="Author/CreateView"><img class="add-link" src="/Content/plus.svg" /></a>',
+            '<a class="add-link" href="CreateView"><img class="add-link" src="/Content/plus.svg" /></a>',
         }],
         columns: [
             {
@@ -96,7 +96,7 @@
                 sortable: false,
                 width: 105,
                 template:
-                '<a class="k-button k-button-icontext" href="Author/GetByIdView/#= AuthorId #" >Get</a>'
+                '<a class="k-button k-button-icontext" href="GetByIdView/#= AuthorId #" >Get</a>'
             },
             {
                 field: "AuthorId",
@@ -104,7 +104,7 @@
                 sortable: false,
                 width: 129,
                 template:
-                '<a class="k-button k-button-icontext" href="Author/UpdateView/#= AuthorId #" >Update</a>'
+                '<a class="k-button k-button-icontext" href="UpdateView/#= AuthorId #" >Update</a>'
             },
             {
                 title: "&nbsp",
