@@ -58,7 +58,7 @@
         },
         toolbar: [{
             template:
-            '<a class="add-link" href="CreateView"><img class="add-link" src="/Content/plus.svg" /></a>',
+            '<a class="add-link" href="Create"><img class="add-link" src="/Content/plus.svg" /></a>',
         }],
         columns: [
             {
@@ -82,7 +82,7 @@
                 sortable: false,
                 width: 105,
                 template:
-                '<a class="k-button k-button-icontext" href="GetByIdView/#= MagazineId #" >Get</a>'
+                '<a class="k-button k-button-icontext" href="Get/#= MagazineId #" >Get</a>'
             },
             {
                 field: "MagazineId",
@@ -90,7 +90,7 @@
                 sortable: false,
                 width: 129,
                 template:
-                '<a class="k-button k-button-icontext" href="UpdateView/#= MagazineId #" >Update</a>'
+                '<a class="k-button k-button-icontext" href="Update/#= MagazineId #" >Update</a>'
             },
             {
                 title: "&nbsp",

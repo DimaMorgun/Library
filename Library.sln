@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2020
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.DataAccessLayer", "Library.DataAccessLayer\Library.DataAccessLayer.csproj", "{3D58096A-0C52-4A6C-8057-DEA11435AA5D}"
 EndProject
@@ -12,8 +12,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.EntityLayer", "Library.EntityLayer\Library.EntityLayer.csproj", "{7471101B-4FA2-469A-9C3E-287C2226F6CB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.ViewModelLayer", "Library.ViewModelLayer\Library.ViewModelLayer.csproj", "{EE2724B5-B05C-49EC-A97C-EB0A40A3CD43}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "TestProject\TestProject.csproj", "{A9F4420C-4103-461F-BBD5-6FF5AD7F414A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +39,6 @@ Global
 		{EE2724B5-B05C-49EC-A97C-EB0A40A3CD43}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE2724B5-B05C-49EC-A97C-EB0A40A3CD43}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE2724B5-B05C-49EC-A97C-EB0A40A3CD43}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A9F4420C-4103-461F-BBD5-6FF5AD7F414A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A9F4420C-4103-461F-BBD5-6FF5AD7F414A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A9F4420C-4103-461F-BBD5-6FF5AD7F414A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A9F4420C-4103-461F-BBD5-6FF5AD7F414A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

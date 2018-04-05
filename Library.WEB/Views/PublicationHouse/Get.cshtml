@@ -37,7 +37,7 @@
 <p>
     @if (User.IsInRole("admin"))
     {
-        <text>@Html.ActionLink("Update", "UpdateView", new { id = Model.PublicationHouseId }) |</text>
+        <text>@Html.ActionLink("Update", "Update", new { id = Model.PublicationHouseId }) |</text>
         <text>@Html.ActionLink("Save To Json", "SaveToJSON", new { id = Model.PublicationHouseId }) |</text>
     }
     @Html.ActionLink("Back to List", "Index")

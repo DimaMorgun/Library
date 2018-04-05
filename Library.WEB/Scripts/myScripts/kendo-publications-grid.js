@@ -7,13 +7,17 @@
                     url: "GetAll/",
                     dataType: "json",
                     success: function (data) {
-                        data.forEach(function (author) {
-                            var books = [];
-                            author.Books.forEach(function (book) {
-                                books.push(book.Name);
-                            });
-                            author.Books = books;
+                        var dataSample = [], Id = {};
+                        data.Books.forEach(function (book) {
+                            dataSample.push({ PublicationId: book.BookId, Name: book.Name, Type: 'Book' });
                         });
+                        data.Magazines.forEach(function (magazine) {
+                            dataSample.push({ PublicationId: magazine.MagazineId, Name: magazine.Name, Type: 'Magazine' });
+                        });
+                        data.Brochures.forEach(function (brochures) {
+                            dataSample.push({ PublicationId: brochures.BrochureId, Name: brochures.Name, Type: 'Brochure' });
+                        });
+                        data = dataSample;
                         return e.success(data);
                     }
                 });
@@ -22,7 +26,7 @@
             destroy: function (e) {
                 $.ajax({
                     type: 'POST',
-                    url: 'Delete/' + e.data.AuthorId,
+                    url: '/' + e.data.Type + '/Delete/' + e.data.PublicationId,
                     dataType: 'number',
                     success: function (data) {
                         $('#grid').data('kendoGrid').dataSource.read();
@@ -37,18 +41,15 @@
                 });
             },
         },
-
         schema:
         {
             model:
             {
-                id: "AuthorId",
+                id: "PublicationId",
                 fields: {
-                    AuthorId: { editable: false, nullable: true, type: "number" },
+                    PublicationId: { editable: false, nullable: true, type: "number" },
                     Name: { editable: false, nullable: true, type: "string" },
-                    Birthday: { editable: false, nullable: true, type: "number" },
-                    Deathday: { editable: false, nullable: true, type: "number" },
-                    Books: { editable: false, nullable: true, type: "string" }
+                    Type: { editable: false, nullable: true, type: "string" }
                 }
             }
         },
@@ -60,15 +61,10 @@
         dataSource: dataSource,
         groupable: true,
         sortable: true,
-        resizable: true,
         editable: {
             mode: "inline",
             confirmation: false
         },
-        toolbar: [{
-            template:
-            '<a class="add-link" href="Create"><img class="add-link" src="/Content/plus.svg" /></a>',
-        }],
         columns: [
             {
                 field: "Name",
@@ -76,35 +72,9 @@
                 sortable: true
             },
             {
-                field: "Books",
-                title: "Books",
+                field: "Type",
+                title: "Type",
                 sortable: true
-            },
-            {
-                field: "Birthday",
-                title: "Birthday",
-                sortable: true
-            },
-            {
-                field: "Deathday",
-                title: "Deathday",
-                sortable: true
-            },
-            {
-                field: "AuthorId",
-                title: "&nbsp",
-                sortable: false,
-                width: 105,
-                template:
-                '<a class="k-button k-button-icontext" href="Get/#= AuthorId #" >Get</a>'
-            },
-            {
-                field: "AuthorId",
-                title: "&nbsp",
-                sortable: false,
-                width: 129,
-                template:
-                '<a class="k-button k-button-icontext" href="Update/#= AuthorId #" >Update</a>'
             },
             {
                 title: "&nbsp",

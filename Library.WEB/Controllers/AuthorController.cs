@@ -33,7 +33,7 @@ namespace Library.WEB.Controllers
 
         [HttpGet]
         [Authorize(Roles = "admin")]
-        public ActionResult CreateView()
+        public ActionResult Create()
         {
             AuthorBooksViewModel authorBooks = _authorService.GetAuthorBooks();
 
@@ -50,7 +50,7 @@ namespace Library.WEB.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetByIdView(int id)
+        public ActionResult Get(int id)
         {
             AuthorViewModel author = _authorService.Get(id);
 
@@ -59,7 +59,7 @@ namespace Library.WEB.Controllers
 
         [HttpGet]
         [Authorize(Roles = "admin")]
-        public ActionResult UpdateView(int id)
+        public ActionResult Update(int id)
         {
             AuthorBooksViewModel authorBooks = _authorService.GetAuthorBooks(id);
 
@@ -73,15 +73,6 @@ namespace Library.WEB.Controllers
             _authorService.Update(author);
 
             return RedirectToAction("Index");
-        }
-
-        [HttpGet]
-        [Authorize(Roles = "admin")]
-        public ActionResult DeleteView(int id)
-        {
-            AuthorViewModel author = _authorService.Get(id);
-
-            return View(author);
         }
 
         [HttpPost]

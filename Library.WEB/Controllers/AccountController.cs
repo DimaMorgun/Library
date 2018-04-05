@@ -4,7 +4,7 @@ using Library.ViewModelLayer.Identity;
 
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-
+using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -47,15 +47,12 @@ namespace Library.WEB.Controllers
                 {
                     ModelState.AddModelError("", "Wrong login or password.");
                 }
-                else
+                AuthenticationManager.SignOut();
+                AuthenticationManager.SignIn(new AuthenticationProperties
                 {
-                    AuthenticationManager.SignOut();
-                    AuthenticationManager.SignIn(new AuthenticationProperties
-                    {
-                        IsPersistent = true
-                    }, claim);
-                    return RedirectToAction("Index", "Home");
-                }
+                    IsPersistent = true
+                }, claim);
+                return RedirectToAction("Index", "Home");
             }
             return View(model);
         }
@@ -87,23 +84,24 @@ namespace Library.WEB.Controllers
                 };
                 OperationDetails operationDetails = await UserService.Create(userDto);
                 if (operationDetails.Succedeed)
+                {
                     return RedirectToAction("Login", "Account");
-                else
-                    ModelState.AddModelError(operationDetails.Property, operationDetails.Message);
+                }
+                ModelState.AddModelError(operationDetails.Property, operationDetails.Message);
             }
             return View(model);
         }
-        //private async Task SetInitialDataAsync()
-        //{
-        //    await UserService.SetInitialData(new UserDTO
-        //    {
-        //        Email = "DimaMorgun97@gmail.com",
-        //        UserName = "Odnorizhok",
-        //        Password = "Ghjcnj gfhjkm1",
-        //        Name = "Morhun Dmytro",
-        //        Address = "Tsilinogradskaya",
-        //        Role = "admin",
-        //    }, new List<string> { "user", "admin" });
-        //}
+        private async Task SetInitialDataAsync()
+        {
+            await UserService.SetInitialData(new UserDTO
+            {
+                Email = "DimaMorgun97@gmail.com",
+                UserName = "Odnorizhok",
+                Password = "Ghjcnj gfhjkm1",
+                Name = "Morhun Dmytro",
+                Address = "Tsilinogradskaya",
+                Role = "admin",
+            }, new List<string> { "user", "admin" });
+        }
     }
 }

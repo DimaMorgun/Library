@@ -68,7 +68,7 @@
                 sortable: false,
                 width: 105,
                 template:
-                '<a class="k-button k-button-icontext" href="GetByIdView/#= PublicationHouseId #" >Get</a>'
+                '<a class="k-button k-button-icontext" href="Get/#= PublicationHouseId #" >Get</a>'
             }
         ],
         height: "500px",

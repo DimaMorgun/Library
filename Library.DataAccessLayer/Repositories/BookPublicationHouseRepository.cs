@@ -1,5 +1,4 @@
-﻿using Library.DataAccessLayer.Connection;
-using Library.EntityLayer.Models;
+﻿using Library.EntityLayer.Models;
 
 using Dapper;
 

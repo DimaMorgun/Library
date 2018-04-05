@@ -1,6 +1,6 @@
 ﻿using Library.BusinessLogicLayer.Infrastructure;
 using Library.BusinessLogicLayer.Interfaces;
-using Library.DataAccessLayer.Interfaces;
+using Library.DataAccessLayer.UnitOfWork;
 using Library.EntityLayer.Identity;
 using Library.ViewModelLayer.Identity;
 
@@ -15,9 +15,9 @@ namespace Library.BusinessLogicLayer.Services
 {
     public class UserService : IUserService
     {
-        IUnitOfWork Database { get; set; }
+        UnitOfWork Database { get; set; }
 
-        public UserService(IUnitOfWork uow)
+        public UserService(UnitOfWork uow)
         {
             Database = uow;
         }
@@ -31,33 +31,27 @@ namespace Library.BusinessLogicLayer.Services
                 var result = await Database.UserManager.CreateAsync(user, userDto.Password);
                 if (result.Errors.Count() > 0)
                     return new OperationDetails(false, result.Errors.FirstOrDefault(), "");
-                // добавляем роль
                 await Database.UserManager.AddToRoleAsync(user.Id, userDto.Role);
-                // создаем профиль клиента
                 ClientProfile clientProfile = new ClientProfile { Id = user.Id, Address = userDto.Address, Name = userDto.Name };
                 Database.ClientManager.Create(clientProfile);
                 await Database.SaveAsync();
                 return new OperationDetails(true, "Register successful.", "");
             }
-            else
-            {
-                return new OperationDetails(false, "User already exsist with this email.", "Email");
-            }
+            return new OperationDetails(false, "User already exsist with this email.", "Email");
         }
 
         public async Task<ClaimsIdentity> Authenticate(UserDTO userDto)
         {
             ClaimsIdentity claim = null;
-            // находим пользователя
             ApplicationUser user = await Database.UserManager.FindAsync(userDto.Email, userDto.Password);
-            // авторизуем его и возвращаем объект ClaimsIdentity
             if (user != null)
+            {
                 claim = await Database.UserManager.CreateIdentityAsync(user,
                                             DefaultAuthenticationTypes.ApplicationCookie);
+            }
             return claim;
         }
 
-        // начальная инициализация бд
         public async Task SetInitialData(UserDTO adminDto, List<string> roles)
         {
             foreach (string roleName in roles)

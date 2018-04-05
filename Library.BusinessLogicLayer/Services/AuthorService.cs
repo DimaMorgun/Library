@@ -97,7 +97,7 @@ namespace Library.BusinessLogicLayer.Services
         public AuthorBooksViewModel GetAuthorBooks(int id)
         {
             Author authorModel = _unitOfWork.Authors.Get(id);
-            List<BookAuthor> allBookAuthors = _unitOfWork.BookAuthors.GetAll();
+            List<BookAuthor> allBookAuthors = _unitOfWork.BookAuthors.GetAllByAuthorId(id);
             List<Book> allBooksModel = _unitOfWork.Books.GetAll();
 
             var bookAuthorsRelationViewModel = Mapper.Map<List<BookAuthor>, List<BookAuthorsRelationViewModel>>(allBookAuthors);

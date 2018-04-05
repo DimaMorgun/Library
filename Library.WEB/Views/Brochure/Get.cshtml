@@ -1,6 +1,5 @@
 ﻿@model Library.ViewModelLayer.ViewModels.BrochureViewModel
 
-<h3>Are you sure you want to delete this?</h3>
 <div>
     <h4>Brochure</h4>
     <hr />
@@ -30,13 +29,12 @@
         </dd>
 
     </dl>
-
-    @using (Html.BeginForm("Delete", "Brochure", new { id = Model.BrochureId }, FormMethod.Post)) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-danger" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
 </div>
+<p>
+    @if (User.IsInRole("admin"))
+    {
+        <text>@Html.ActionLink("Update", "Update", new { id = Model.BrochureId }) |</text>
+        <text>@Html.ActionLink("Save To Json", "SaveToJSON", new { id = Model.BrochureId }) |</text>
+    }
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -28,12 +28,6 @@
 
             @Html.EditorFor(model => model.Password, new { htmlAttributes = new { type = "password", id = "inputPassword", @class = "form-control", placeholder = "Password", required = "required" } })
 
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" value="remember-me"> Remember me
-                </label>
-            </div>
-
             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
             @Html.ActionLink("Register", "Register", "Account", null, new { @class = "btn btn-lg btn-primary btn-block", data_icon = "gear" })
         }

@@ -84,6 +84,9 @@
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
     </Reference>
@@ -202,6 +205,7 @@
     <Compile Include="Controllers\BrochureController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MagazineController.cs" />
+    <Compile Include="Controllers\PublicationController.cs" />
     <Compile Include="Controllers\PublicationHouseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -274,6 +278,7 @@
     <Content Include="Scripts\myScripts\holder.min.js" />
     <Content Include="Scripts\myScripts\ie-emulation-modes-warning.js" />
     <Content Include="Scripts\myScripts\ie10-viewport-bug-workaround.js" />
+    <Content Include="Scripts\myScripts\kendo-publications-grid.js" />
     <Content Include="Scripts\myScripts\user-kendo-author-grid.js" />
     <Content Include="Scripts\myScripts\user-kendo-book-grid.js" />
     <Content Include="Scripts\myScripts\user-kendo-brochure-grid.js" />
@@ -320,31 +325,26 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Book\Index.cshtml" />
-    <Content Include="Views\Book\CreateView.cshtml" />
-    <Content Include="Views\Book\GetByIdView.cshtml" />
-    <Content Include="Views\Book\UpdateView.cshtml" />
-    <Content Include="Views\Book\DeleteView.cshtml" />
+    <Content Include="Views\Book\Create.cshtml" />
+    <Content Include="Views\Book\Get.cshtml" />
+    <Content Include="Views\Book\Update.cshtml" />
     <Content Include="Views\Author\Index.cshtml" />
-    <Content Include="Views\Author\CreateView.cshtml" />
-    <Content Include="Views\Author\GetByIdView.cshtml" />
-    <Content Include="Views\Author\UpdateView.cshtml" />
-    <Content Include="Views\Author\DeleteView.cshtml" />
+    <Content Include="Views\Author\Create.cshtml" />
+    <Content Include="Views\Author\Get.cshtml" />
+    <Content Include="Views\Author\Update.cshtml" />
     <Content Include="Views\Magazine\Index.cshtml" />
-    <Content Include="Views\Magazine\CreateView.cshtml" />
-    <Content Include="Views\Magazine\GetByIdView.cshtml" />
-    <Content Include="Views\Magazine\UpdateView.cshtml" />
-    <Content Include="Views\Magazine\DeleteView.cshtml" />
-    <Content Include="Views\Home\AllPublications.cshtml" />
+    <Content Include="Views\Magazine\Create.cshtml" />
+    <Content Include="Views\Magazine\Get.cshtml" />
+    <Content Include="Views\Magazine\Update.cshtml" />
+    <Content Include="Views\Publication\AllPublications.cshtml" />
     <Content Include="Views\PublicationHouse\Index.cshtml" />
-    <Content Include="Views\PublicationHouse\CreateView.cshtml" />
-    <Content Include="Views\PublicationHouse\GetByIdView.cshtml" />
-    <Content Include="Views\PublicationHouse\UpdateView.cshtml" />
-    <Content Include="Views\PublicationHouse\DeleteView.cshtml" />
+    <Content Include="Views\PublicationHouse\Create.cshtml" />
+    <Content Include="Views\PublicationHouse\Get.cshtml" />
+    <Content Include="Views\PublicationHouse\Update.cshtml" />
     <Content Include="Views\Brochure\Index.cshtml" />
-    <Content Include="Views\Brochure\CreateView.cshtml" />
-    <Content Include="Views\Brochure\GetByIdView.cshtml" />
-    <Content Include="Views\Brochure\UpdateView.cshtml" />
-    <Content Include="Views\Brochure\DeleteView.cshtml" />
+    <Content Include="Views\Brochure\Create.cshtml" />
+    <Content Include="Views\Brochure\Get.cshtml" />
+    <Content Include="Views\Brochure\Update.cshtml" />
     <Content Include="Scripts\kendo.all.min.js.map" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />

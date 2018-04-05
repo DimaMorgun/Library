@@ -1,6 +1,6 @@
 ﻿@model Library.ViewModelLayer.ViewModels.AuthorBooksViewModel
 
-@using (Html.BeginForm("Create", "Author", FormMethod.Post))
+@using (Html.BeginForm("Update", "Author", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
@@ -8,6 +8,7 @@
         <h4>Author</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Author.AuthorId)
         <div class="form-group">
             @Html.LabelFor(model => model.Author.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -35,10 +36,10 @@
         <div id="example" role="application" class="col-md-10">
             <div class="demo-section k-content">
                 <label for="books">@Html.LabelFor(model => model.Books)</label>
-                <select id="books" name="Author.SelectedBooks" multiple="multiple" data-placeholder="Select Authors">
+                <select id="books" name="Author.SelectedBooks" multiple="multiple" data-placeholder="Select Books">
                     @foreach (var book in Model.Books)
                     {
-                        <option value="@book.BookId">@book.Name</option>
+                        <option @(Model.BookAuthors.FirstOrDefault(x => x.BookId == book.BookId && x.AuthorId == Model.Author.AuthorId) != null ? "selected" : "") value="@book.BookId">@book.Name</option>
                     }
                 </select>
             </div>
@@ -46,12 +47,9 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-success" />
+                <input type="submit" value="Update" class="btn btn-warning" /> |
+                @Html.ActionLink("Back to List", "Index")
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

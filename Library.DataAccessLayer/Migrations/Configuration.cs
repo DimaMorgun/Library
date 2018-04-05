@@ -1,6 +1,12 @@
-namespace Library.DataAccessLayer.Migrations
+﻿namespace Library.DataAccessLayer.Migrations
 {
+    using Library.DataAccessLayer.UnitOfWork;
+    using Library.EntityLayer.Identity;
+    using Library.ViewModelLayer.Identity;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -14,10 +20,24 @@ namespace Library.DataAccessLayer.Migrations
 
         protected override void Seed(Library.DataAccessLayer.Context.LibraryDataAccessContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            //if (!context.Roles.Any(r => r.Name == "admin"))
+            //{
+            //    var store = new RoleStore<IdentityRole>(context);
+            //    var manager = new RoleManager<IdentityRole>(store);
+            //    var role = new IdentityRole { Name = "admin" };
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data.
+            //    manager.Create(role);
+            //}
+
+            //if (!context.Users.Any(u => u.UserName == "Dmytro"))
+            //{
+            //    var store = new UserStore<ApplicationUser>(context);
+            //    var manager = new UserManager<ApplicationUser>(store);
+            //    var user = new ApplicationUser { UserName = "Dmytro", Email = "DimaMorgun97@gmail.com" };
+
+            //    manager.Create(user, "Ghjcnj gfhjkm1");
+            //    manager.AddToRole(user.Id, "admin");
+            //}
         }
     }
 }

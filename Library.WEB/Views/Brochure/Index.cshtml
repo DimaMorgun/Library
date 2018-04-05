@@ -8,7 +8,7 @@
 {
     <script src="~/Scripts/myScripts/kendo-brochure-grid.js"></script>
 }
-else
+@if (User.IsInRole("user"))
 {
     <script src="~/Scripts/myScripts/user-kendo-brochure-grid.js"></script>
 }

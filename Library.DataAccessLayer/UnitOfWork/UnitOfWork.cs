@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Library.DataAccessLayer.UnitOfWork
 {
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : IDisposable
     {
         private LibraryDataAccessContext _context;
         private string _connection;
@@ -21,13 +21,13 @@ namespace Library.DataAccessLayer.UnitOfWork
         private ApplicationRoleManager _roleManager;
         private IClientManager _clientManager;
 
-        private IGenericRepository<Book> _bookRepository;
-        private IGenericRepository<Author> _authorRepository;
+        private BookRepository _bookRepository;
+        private AuthorRepository _authorRepository;
         private BookAuthorRepository _bookAuthorRepository;
-        private IGenericRepository<PublicationHouse> _publicationHouseRepository;
+        private PublicationHouseRepository _publicationHouseRepository;
         private BookPublicationHouseRepository _bookPublicationHouseRepository;
-        private IGenericRepository<Magazine> _magazineRepository;
-        private IGenericRepository<Brochure> _brochureRepository;
+        private MagazineRepository _magazineRepository;
+        private BrochureRepository _brochureRepository;
 
         public UnitOfWork(string connection)
         {
@@ -59,21 +59,21 @@ namespace Library.DataAccessLayer.UnitOfWork
             await _context.SaveChangesAsync();
         }
 
-        public IGenericRepository<Book> Books
+        public BookRepository Books
         {
             get
             {
                 if (_bookRepository == null)
-                    _bookRepository = new GenericRepository<Book>(_connection);
+                    _bookRepository = new BookRepository(_connection);
                 return _bookRepository;
             }
         }
-        public IGenericRepository<Author> Authors
+        public AuthorRepository Authors
         {
             get
             {
                 if (_authorRepository == null)
-                    _authorRepository = new GenericRepository<Author>(_connection);
+                    _authorRepository = new AuthorRepository(_connection);
                 return _authorRepository;
             }
         }
@@ -86,12 +86,12 @@ namespace Library.DataAccessLayer.UnitOfWork
                 return _bookAuthorRepository;
             }
         }
-        public IGenericRepository<PublicationHouse> PublicationHouses
+        public PublicationHouseRepository PublicationHouses
         {
             get
             {
                 if (_publicationHouseRepository == null)
-                    _publicationHouseRepository = new GenericRepository<PublicationHouse>(_connection);
+                    _publicationHouseRepository = new PublicationHouseRepository(_connection);
                 return _publicationHouseRepository;
             }
         }
@@ -104,21 +104,21 @@ namespace Library.DataAccessLayer.UnitOfWork
                 return _bookPublicationHouseRepository;
             }
         }
-        public IGenericRepository<Magazine> Magazines
+        public MagazineRepository Magazines
         {
             get
             {
                 if (_magazineRepository == null)
-                    _magazineRepository = new GenericRepository<Magazine>(_connection);
+                    _magazineRepository = new MagazineRepository(_connection);
                 return _magazineRepository;
             }
         }
-        public IGenericRepository<Brochure> Brochures
+        public BrochureRepository Brochures
         {
             get
             {
                 if (_brochureRepository == null)
-                    _brochureRepository = new GenericRepository<Brochure>(_connection);
+                    _brochureRepository = new BrochureRepository(_connection);
                 return _brochureRepository;
             }
         }
@@ -134,7 +134,7 @@ namespace Library.DataAccessLayer.UnitOfWork
                     _userManager.Dispose();
                     _roleManager.Dispose();
                     _clientManager.Dispose();
-                    //TODO: might be a bug
+
                     _context.Dispose();
                 }
                 disposed = true;

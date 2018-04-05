@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Library.DataAccessLayer.Repositories
 {
-    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
+    public class GenericRepository<TEntity> where TEntity : class
     {
         private SqlConnection _connection;
 

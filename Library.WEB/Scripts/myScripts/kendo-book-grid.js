@@ -70,7 +70,7 @@
         },
         toolbar: [{
             template:
-            '<a class="add-link" href="CreateView"><img class="add-link" src="/Content/plus.svg" /></a>',
+            '<a class="add-link" href="Create"><img class="add-link" src="/Content/plus.svg" /></a>',
         }],
         columns: [
             {
@@ -99,7 +99,7 @@
                 sortable: false,
                 width: 105,
                 template:
-                '<a class="k-button k-button-icontext" href="GetByIdView/#= BookId #" >Get</a>'
+                '<a class="k-button k-button-icontext" href="Get/#= BookId #" >Get</a>'
             },
             {
                 field: "BookId",
@@ -107,7 +107,7 @@
                 sortable: false,
                 width: 129,
                 template:
-                '<a class="k-button k-button-icontext" href="UpdateView/#= BookId #" >Update</a>'
+                '<a class="k-button k-button-icontext" href="Update/#= BookId #" >Update</a>'
             },
             {
                 title: "&nbsp",

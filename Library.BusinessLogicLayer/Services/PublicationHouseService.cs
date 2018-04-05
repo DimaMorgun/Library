@@ -95,7 +95,7 @@ namespace Library.BusinessLogicLayer.Services
         public PublicationHouseBooksViewModel GetPublicationHouseBooks(int id)
         {
             PublicationHouse publicationHouseModel = _unitOfWork.PublicationHouses.Get(id);
-            List<BookPublicationHouse> allBookPublicationHouses = _unitOfWork.BookPublicationHouses.GetAll();
+            List<BookPublicationHouse> allBookPublicationHouses = _unitOfWork.BookPublicationHouses.GetAllByPublicationHouseId(id);
             List<Book> allBooksModel = _unitOfWork.Books.GetAll();
 
             var bookPublicationHouseRelationViewModel = Mapper.Map<List<BookPublicationHouse>, List<BookPublicationHousesRelationViewModel>>(allBookPublicationHouses);

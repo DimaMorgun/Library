@@ -9,7 +9,7 @@
 {
     <script src="~/Scripts/myScripts/kendo-publicationHouse-grid.js"></script>
 }
-else
+@if (User.IsInRole("user"))
 {
     <script src="~/Scripts/myScripts/user-kendo-publicationHouse-grid.js"></script>
 }

@@ -60,7 +60,7 @@
                 sortable: false,
                 width: 105,
                 template:
-                '<a class="k-button k-button-icontext" href="GetByIdView/#= BrochureId #" >Get</a>'
+                '<a class="k-button k-button-icontext" href="Get/#= BrochureId #" >Get</a>'
             }
         ],
         height: "500px",

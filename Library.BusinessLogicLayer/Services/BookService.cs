@@ -129,9 +129,9 @@ namespace Library.BusinessLogicLayer.Services
         public BookAuthorsPublicationHousesViewModel GetBookAuthorsPublicationHouses(int id)
         {
             Book bookModel = _unitOfWork.Books.Get(id);
-            List<BookAuthor> allBookAuthors = _unitOfWork.BookAuthors.GetAll();
+            List<BookAuthor> allBookAuthors = _unitOfWork.BookAuthors.GetAllByBookId(id);
             List<Author> allAuthors = _unitOfWork.Authors.GetAll();
-            List<BookPublicationHouse> allBookPublicationHouses = _unitOfWork.BookPublicationHouses.GetAll();
+            List<BookPublicationHouse> allBookPublicationHouses = _unitOfWork.BookPublicationHouses.GetAllByBookId(id);
             List<PublicationHouse> allPublicationHouses = _unitOfWork.PublicationHouses.GetAll();
 
             var bookViewModel = Mapper.Map<Book, BookViewModel>(bookModel);

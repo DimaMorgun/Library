@@ -27,7 +27,7 @@
         <div id="example" role="application" class="col-md-10">
             <div class="demo-section k-content">
                 <label for="books">@Html.LabelFor(model => model.Books)</label>
-                <select id="books" name="PublicationHouse.SelectedBooks" multiple="multiple" data-placeholder="Select Authors">
+                <select id="books" name="PublicationHouse.SelectedBooks" multiple="multiple" data-placeholder="Select Books">
                     @foreach (var book in Model.Books)
                     {
                         <option value="@book.BookId">@book.Name</option>

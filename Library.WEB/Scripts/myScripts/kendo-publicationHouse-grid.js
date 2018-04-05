@@ -66,7 +66,7 @@
         },
         toolbar: [{
             template:
-            '<a class="add-link" href="CreateView"><img class="add-link" src="/Content/plus.svg" /></a>',
+            '<a class="add-link" href="Create"><img class="add-link" src="/Content/plus.svg" /></a>',
         }],
         columns: [
             {
@@ -90,7 +90,7 @@
                 sortable: false,
                 width: 105,
                 template:
-                '<a class="k-button k-button-icontext" href="GetByIdView/#= PublicationHouseId #" >Get</a>'
+                '<a class="k-button k-button-icontext" href="Get/#= PublicationHouseId #" >Get</a>'
             },
             {
                 field: "PublicationHouseId",
@@ -98,7 +98,7 @@
                 sortable: false,
                 width: 129,
                 template:
-                '<a class="k-button k-button-icontext" href="UpdateView/#= PublicationHouseId #" >Update</a>'
+                '<a class="k-button k-button-icontext" href="Update/#= PublicationHouseId #" >Update</a>'
             },
             {
                 title: "&nbsp",
