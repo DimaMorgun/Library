@@ -274,8 +274,13 @@
     <Content Include="Scripts\myScripts\holder.min.js" />
     <Content Include="Scripts\myScripts\ie-emulation-modes-warning.js" />
     <Content Include="Scripts\myScripts\ie10-viewport-bug-workaround.js" />
+    <Content Include="Scripts\myScripts\user-kendo-author-grid.js" />
+    <Content Include="Scripts\myScripts\user-kendo-book-grid.js" />
+    <Content Include="Scripts\myScripts\user-kendo-brochure-grid.js" />
+    <Content Include="Scripts\myScripts\user-kendo-magazine-grid.js" />
     <Content Include="Scripts\myScripts\kendo-magazine-grid.js" />
     <Content Include="Scripts\myScripts\kendo-brochure-grid.js" />
+    <Content Include="Scripts\myScripts\user-kendo-publicationHouse-grid.js" />
     <Content Include="Scripts\myScripts\kendo-publicationHouse-grid.js" />
     <Content Include="Scripts\myScripts\kendo-author-grid.js" />
     <Content Include="Scripts\myScripts\kendo-book-grid.js" />

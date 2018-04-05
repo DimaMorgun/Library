@@ -32,12 +32,14 @@ namespace Library.WEB.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult CreateView()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Create(MagazineViewModel magazine)
         {
             _magazineService.Insert(magazine);
@@ -54,6 +56,7 @@ namespace Library.WEB.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult UpdateView(int id)
         {
             MagazineViewModel magazine = _magazineService.Get(id);
@@ -62,6 +65,7 @@ namespace Library.WEB.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Update(MagazineViewModel magazine)
         {
             _magazineService.Update(magazine);
@@ -70,6 +74,7 @@ namespace Library.WEB.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult DeleteView(int id)
         {
             MagazineViewModel magazine = _magazineService.Get(id);
@@ -78,6 +83,7 @@ namespace Library.WEB.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int id)
         {
             _magazineService.Delete(id);
@@ -86,6 +92,7 @@ namespace Library.WEB.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult SaveToJSON(int id)
         {
             _magazineService.SaveToJSON(id);

@@ -4,4 +4,11 @@
     <div id="grid"></div>
 </div>
 
-<script src="~/Scripts/myScripts/kendo-author-grid.js"></script>
+@if (User.IsInRole("admin"))
+{
+    <script src="~/Scripts/myScripts/kendo-author-grid.js"></script>
+}
+else
+{
+    <script src="~/Scripts/myScripts/user-kendo-author-grid.js"></script>
+}

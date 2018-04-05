@@ -32,6 +32,7 @@ namespace Library.WEB.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult CreateView()
         {
             AuthorBooksViewModel authorBooks = _authorService.GetAuthorBooks();
@@ -40,6 +41,7 @@ namespace Library.WEB.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Create(AuthorViewModel author)
         {
             _authorService.Insert(author);
@@ -56,6 +58,7 @@ namespace Library.WEB.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult UpdateView(int id)
         {
             AuthorBooksViewModel authorBooks = _authorService.GetAuthorBooks(id);
@@ -64,6 +67,7 @@ namespace Library.WEB.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Update(AuthorViewModel author)
         {
             _authorService.Update(author);
@@ -72,6 +76,7 @@ namespace Library.WEB.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult DeleteView(int id)
         {
             AuthorViewModel author = _authorService.Get(id);
@@ -80,6 +85,7 @@ namespace Library.WEB.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int id)
         {
             _authorService.Delete(id);
@@ -88,6 +94,7 @@ namespace Library.WEB.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult SaveToJSON(int id)
         {
             _authorService.SaveToJSON(id);

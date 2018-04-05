@@ -32,6 +32,7 @@ namespace Library.WEB.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult CreateView()
         {
             PublicationHouseBooksViewModel publicationHouseBooks = _publicationHouseService.GetPublicationHouseBooks();
@@ -40,6 +41,7 @@ namespace Library.WEB.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Create(PublicationHouseViewModel publicationHouse)
         {
             _publicationHouseService.Insert(publicationHouse);
@@ -56,6 +58,7 @@ namespace Library.WEB.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult UpdateView(int id)
         {
             PublicationHouseBooksViewModel publicationHouseBooks = _publicationHouseService.GetPublicationHouseBooks(id);
@@ -64,6 +67,7 @@ namespace Library.WEB.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Update(PublicationHouseViewModel publicationHouse)
         {
             _publicationHouseService.Update(publicationHouse);
@@ -72,6 +76,7 @@ namespace Library.WEB.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult DeleteView(int id)
         {
             PublicationHouseViewModel publicationHouse = _publicationHouseService.Get(id);
@@ -80,6 +85,7 @@ namespace Library.WEB.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int id)
         {
             _publicationHouseService.Delete(id);
@@ -88,6 +94,7 @@ namespace Library.WEB.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult SaveToJSON(int id)
         {
             _publicationHouseService.SaveToJSON(id);

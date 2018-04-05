@@ -47,7 +47,10 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Update", "UpdateView", new { id = Model.BookId }) |
-    @Html.ActionLink("Save To Json", "SaveToJSON", new { id = Model.BookId }) |
+    @if (User.IsInRole("admin"))
+    {
+        <text>@Html.ActionLink("Update", "UpdateView", new { id = Model.BookId }) |</text>
+        <text>@Html.ActionLink("Save To Json", "SaveToJSON", new { id = Model.BookId }) |</text>
+    }
     @Html.ActionLink("Back to List", "Index")
 </p>

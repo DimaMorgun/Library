@@ -32,12 +32,14 @@ namespace Library.WEB.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult CreateView()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Create(BrochureViewModel brochure)
         {
             _brochureService.Insert(brochure);
@@ -54,6 +56,7 @@ namespace Library.WEB.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult UpdateView(int id)
         {
             BrochureViewModel brochure = _brochureService.Get(id);
@@ -62,6 +65,7 @@ namespace Library.WEB.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Update(BrochureViewModel brochure)
         {
             _brochureService.Update(brochure);
@@ -70,6 +74,7 @@ namespace Library.WEB.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult DeleteView(int id)
         {
             BrochureViewModel brochure = _brochureService.Get(id);
@@ -78,6 +83,7 @@ namespace Library.WEB.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int id)
         {
             _brochureService.Delete(id);
@@ -86,6 +92,7 @@ namespace Library.WEB.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult SaveToJSON(int id)
         {
             _brochureService.SaveToJSON(id);
